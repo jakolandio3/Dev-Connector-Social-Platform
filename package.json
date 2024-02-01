@@ -5,7 +5,9 @@
   "main": "server.ts",
   "scripts": {
     "start": "node server",
-    "server": "nodemon server"
+    "server": "nodemon server",
+    "client": "npm run dev --prefix client",
+    "dev": "concurrently npm:server npm:client"
   },
   "author": "Jakob Douglas",
   "license": "MIT",

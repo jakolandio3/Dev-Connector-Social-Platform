@@ -30,7 +30,7 @@ router.post(
 			'Please enter a password with 6 or more characters'
 		).isLength({ min: 6 }),
 	],
-	async (req: NewUser, res: Response) => {
+	async (req: any, res: Response) => {
 		const errors = validationResult(req);
 		if (!errors.isEmpty()) {
 			return res.status(400).json({ errors: errors.array() });
@@ -61,6 +61,7 @@ router.post(
 				{ expiresIn: 360000 },
 				(err, token) => {
 					if (err) throw new Error(err.message);
+
 					res.json({ token });
 				}
 			);
