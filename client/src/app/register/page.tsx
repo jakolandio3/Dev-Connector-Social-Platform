@@ -1,10 +1,13 @@
 'use client';
 import React, { useState } from 'react';
+import { connect, useDispatch } from 'react-redux';
 import Container from '../components/layout/Container';
 import Link from 'next/link';
-import axios from 'axios';
-
-export default function Register() {
+import { setAlert } from '@/actions/alert';
+import { useTypedSelector } from '@/hooks/useTypedSelector';
+import Alert from '../components/layout/Alert';
+function Register(props: any) {
+	const dispatch = useDispatch<any>();
 	const [formData, setFormData] = useState({
 		name: '',
 		email: '',
@@ -15,11 +18,13 @@ export default function Register() {
 	function onChange(e: React.ChangeEvent<HTMLInputElement>): void {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 	}
-
+	const alertsArray = useTypedSelector((state) => state.alert);
 	async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
 		if (password !== password2) {
-			throw new Error('passwords dont match');
+			//can set these in two ways dispatch at least TS knows whats going on
+			props.setAlert('Passwords do not match', 'danger');
+			dispatch(setAlert('another Alert', 'success'));
 		} else {
 			console.log('success');
 			// const newUser = {
@@ -27,7 +32,8 @@ export default function Register() {
 			// 	email,
 			// 	password,
 			// };
-			//--TEST USER CREATE--COORS ERRORS FIXED ON SERVER SIDE try {
+			// // --TEST USER CREATE--COORS ERRORS FIXED ON SERVER SIDE
+			// try {
 			// 	const config = {
 			// 		headers: {
 			// 			'Content-Type': 'application/json',
@@ -48,10 +54,12 @@ export default function Register() {
 
 	return (
 		<Container>
+			<Alert />
 			<h1 className=' text-5xl mb-4 text-primary'>Sign Up</h1>
 			<p className='text-2xl mb-4'>
 				<i className='fas fa-user'></i> Create Your Account
 			</p>
+
 			<form className='my-4' onSubmit={(e) => onSubmit(e)}>
 				<div className='my-4'>
 					<input
@@ -115,3 +123,5 @@ export default function Register() {
 		</Container>
 	);
 }
+
+export default connect(null, { setAlert })(Register);
