@@ -4,10 +4,13 @@ import { connect, useDispatch } from 'react-redux';
 import Container from '../components/layout/Container';
 import Link from 'next/link';
 import { setAlert } from '@/actions/alert';
+import { register } from '@/actions/auth';
 import { useTypedSelector } from '@/hooks/useTypedSelector';
 import Alert from '../components/layout/Alert';
+
 function Register(props: any) {
 	const dispatch = useDispatch<any>();
+
 	const [formData, setFormData] = useState({
 		name: '',
 		email: '',
@@ -15,40 +18,23 @@ function Register(props: any) {
 		password2: '',
 	});
 	const { name, email, password, password2 } = formData;
+
 	function onChange(e: React.ChangeEvent<HTMLInputElement>): void {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 	}
 	const alertsArray = useTypedSelector((state) => state.alert);
+	const { token, isAuthenticated, loading } = useTypedSelector(
+		(state) => state.auth
+	);
 	async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
 		if (password !== password2) {
 			//can set these in two ways dispatch at least TS knows whats going on
-			props.setAlert('Passwords do not match', 'danger');
-			dispatch(setAlert('another Alert', 'success'));
+
+			dispatch(setAlert('another Alert', 'danger'));
 		} else {
-			console.log('success');
-			// const newUser = {
-			// 	name,
-			// 	email,
-			// 	password,
-			// };
-			// // --TEST USER CREATE--COORS ERRORS FIXED ON SERVER SIDE
-			// try {
-			// 	const config = {
-			// 		headers: {
-			// 			'Content-Type': 'application/json',
-			// 		},
-			// 	};
-			// 	const body = JSON.stringify(newUser);
-			// 	const res = await axios.post(
-			// 		'http://localhost:5000/api/users',
-			// 		body,
-			// 		config
-			// 	);
-			// 	console.log(res.data);
-			// } catch (error) {
-			// 	console.log(error);
-			// }
+			const newUser = { name, email, password };
+			dispatch(register(newUser));
 		}
 	}
 

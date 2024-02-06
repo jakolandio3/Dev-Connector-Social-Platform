@@ -2,8 +2,18 @@
 import React, { useState } from 'react';
 import Container from '../components/layout/Container';
 import Link from 'next/link';
+import { useDispatch } from 'react-redux';
+import { login } from '@/actions/auth';
+import Alert from '../components/layout/Alert';
+import { useTypedSelector } from '@/hooks/useTypedSelector';
+import { useRouter } from 'next/navigation';
 
 export default function Login() {
+	const router = useRouter();
+	const dispatch = useDispatch<any>();
+	const { token, isAuthenticated, loading } = useTypedSelector(
+		(state) => state.auth
+	);
 	const [formData, setFormData] = useState({
 		email: '',
 		password: '',
@@ -15,10 +25,16 @@ export default function Login() {
 
 	async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
+		dispatch(login(email, password));
+	}
+	//redirect if loggedin
+	if (isAuthenticated) {
+		router.push('/dashboard');
 	}
 
 	return (
 		<Container>
+			<Alert />
 			<h1 className=' text-5xl mb-4 text-primary'>Sign In</h1>
 			<p className='text-2xl mb-4'>
 				<i className='fas fa-user'></i> Sign Into your Account
@@ -46,7 +62,6 @@ export default function Login() {
 						name='password'
 						value={password}
 						onChange={(e) => onChange(e)}
-						minLength={6}
 						className='block w-full p-2 text-lg border border-gray-400'
 						required
 					/>

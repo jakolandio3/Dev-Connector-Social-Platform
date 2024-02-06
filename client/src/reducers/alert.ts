@@ -7,8 +7,9 @@ export interface alerts {
 	msg: string;
 	alertType: string;
 }
+export type alertsState = alerts[];
 
-const initialState: alerts[] = [];
+const initialState: alertsState = [];
 
 export default function alert(state = initialState, action: UnknownAction) {
 	const { type, payload } = action;

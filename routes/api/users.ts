@@ -13,7 +13,7 @@ const router: Router = express.Router();
 //@access Public
 export interface NewUser extends Request {
 	body: {
-		name: string;
+		name?: string;
 		email: string;
 		password: string;
 	};

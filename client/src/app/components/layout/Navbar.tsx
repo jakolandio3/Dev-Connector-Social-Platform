@@ -1,5 +1,7 @@
 import Link from 'next/link';
+
 import React from 'react';
+import LoginOut from '../LoginOut';
 
 export default function Navbar() {
 	return (
@@ -10,23 +12,8 @@ export default function Navbar() {
 					DevSocial
 				</Link>
 			</h1>
-			<ul className='flex gap-2'>
-				<li>
-					<Link href={'/profiles'} className='hover:text-primary'>
-						Developers
-					</Link>
-				</li>
-				<li>
-					<Link href={'/register'} className='hover:text-primary'>
-						Register
-					</Link>
-				</li>
-				<li>
-					<Link href={'/login'} className='hover:text-primary'>
-						Login
-					</Link>
-				</li>
-			</ul>
+
+			<LoginOut />
 		</nav>
 	);
 }
