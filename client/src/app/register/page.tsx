@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import Container from '../components/layout/Container';
 import Link from 'next/link';
@@ -7,10 +7,11 @@ import { setAlert } from '@/actions/alert';
 import { register } from '@/actions/auth';
 import { useTypedSelector } from '@/hooks/useTypedSelector';
 import Alert from '../components/layout/Alert';
+import { useRouter } from 'next/navigation';
 
 function Register(props: any) {
 	const dispatch = useDispatch<any>();
-
+	const router = useRouter();
 	const [formData, setFormData] = useState({
 		name: '',
 		email: '',
@@ -18,14 +19,18 @@ function Register(props: any) {
 		password2: '',
 	});
 	const { name, email, password, password2 } = formData;
-
-	function onChange(e: React.ChangeEvent<HTMLInputElement>): void {
-		setFormData({ ...formData, [e.target.name]: e.target.value });
-	}
 	const alertsArray = useTypedSelector((state) => state.alert);
 	const { token, isAuthenticated, loading } = useTypedSelector(
 		(state) => state.auth
 	);
+	useEffect(() => {
+		if (isAuthenticated && !loading) {
+			router.push('/dashboard');
+		}
+	}, [isAuthenticated, loading, router]);
+	function onChange(e: React.ChangeEvent<HTMLInputElement>): void {
+		setFormData({ ...formData, [e.target.name]: e.target.value });
+	}
 	async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
 		if (password !== password2) {

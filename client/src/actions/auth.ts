@@ -14,8 +14,9 @@ const {
 	LOGIN_FAIL,
 	LOGIN_SUCCESS,
 	LOGOUT,
+	CLEAR_PROFILE,
 } = ActionType;
-const DATABASE = `http://localhost:5000`;
+export const DATABASE = `http://localhost:5000`;
 export interface UserFields {
 	name: string;
 	email: string;
@@ -104,5 +105,6 @@ export const login =
 //LOGOUT
 export const logout =
 	(): ThunkAction<void, RootState, unknown, UnknownAction> => (dispatch) => {
+		dispatch({ type: CLEAR_PROFILE });
 		dispatch({ type: LOGOUT });
 	};

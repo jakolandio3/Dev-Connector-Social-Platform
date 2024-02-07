@@ -1,7 +1,7 @@
 import { Response, Router } from 'express';
 import authMiddleware from '../../middleware/auth';
 import { Profile } from '../../models/Profile';
-import { NewUser } from './users';
+
 import { check, validationResult } from 'express-validator';
 import { User } from '../../models/User';
 import request from 'request';
@@ -12,7 +12,7 @@ const router: Router = express.Router();
 //@route GET api/profile/me
 //@desc get current users profile
 //@access Private
-router.get('/me', authMiddleware, async (req: NewUser, res: Response) => {
+router.get('/me', authMiddleware, async (req: any, res: Response) => {
 	try {
 		const profile = await Profile.findOne({ user: req.user.id }).populate(
 			'user',
@@ -21,6 +21,7 @@ router.get('/me', authMiddleware, async (req: NewUser, res: Response) => {
 		if (!profile) {
 			return res.status(400).json({ msg: 'There is no profile for this user' });
 		}
+		return res.json(profile);
 	} catch (error) {
 		res.status(500).send('Server Error');
 	}

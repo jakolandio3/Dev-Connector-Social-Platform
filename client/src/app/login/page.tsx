@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from '../components/layout/Container';
 import Link from 'next/link';
 import { useDispatch } from 'react-redux';
@@ -19,6 +19,11 @@ export default function Login() {
 		password: '',
 	});
 	const { email, password } = formData;
+	useEffect(() => {
+		if (isAuthenticated && !loading) {
+			router.push('/dashboard');
+		}
+	}, [isAuthenticated, loading, router]);
 	function onChange(e: React.ChangeEvent<HTMLInputElement>): void {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 	}
@@ -28,9 +33,6 @@ export default function Login() {
 		dispatch(login(email, password));
 	}
 	//redirect if loggedin
-	if (isAuthenticated) {
-		router.push('/dashboard');
-	}
 
 	return (
 		<Container>

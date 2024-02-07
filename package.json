@@ -33,6 +33,7 @@
     "@types/jsonwebtoken": "^9.0.5",
     "@types/request": "^2.48.12",
     "concurrently": "^8.2.2",
+    "daisyui": "^4.6.1",
     "nodemon": "^3.0.3"
   }
 }

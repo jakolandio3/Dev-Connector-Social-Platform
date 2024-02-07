@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import React from 'react';
-import LoginOut from '../LoginOut';
+import LoginOut from './LoginOut';
 
 export default function Navbar() {
 	return (

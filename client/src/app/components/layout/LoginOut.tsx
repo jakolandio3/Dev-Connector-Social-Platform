@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 
 export default function LoginOut() {
 	const router = useRouter();
+	//left this here incase I need to handle routing different on logout
 	const dispatch = useDispatch<any>();
 	const { token, isAuthenticated, loading, user } = useTypedSelector(
 		(state) => state.auth
@@ -15,25 +16,26 @@ export default function LoginOut() {
 	const firstName = user?.name.split(' ', 2)[0];
 	function handleLogOut(): void {
 		dispatch(logout());
-		router.push('/');
 	}
-	if (isAuthenticated && !loading && user.name) {
+	if (isAuthenticated && !loading) {
 		return (
-			<ul className='flex gap-2'>
-				welcome {firstName}
+			<ul className='flex gap-4'>
+				<span className='hidden sm:inline-block'>
+					{' '}
+					welcome {user?.name && firstName}
+				</span>
+
 				<li>
-					<Link href={'/profiles'} className='hover:text-primary'>
-						..
+					<Link href={'/dashboard'} className='hover:text-primary'>
+						<span className='fas fa-user'></span>{' '}
+						<span className='hidden sm:inline-block'>Dashboard</span>
 					</Link>
 				</li>
-				<li>
-					<Link href={'/register'} className='hover:text-primary'>
-						...
-					</Link>
-				</li>
+
 				<li>
 					<button onClick={handleLogOut} className='hover:text-primary'>
-						<span className=' fas fa-sign-out-alt'></span> Logout
+						<span className=' fas fa-sign-out-alt'></span>{' '}
+						<span className='hidden sm:inline-block'>Logout</span>
 					</button>
 				</li>
 			</ul>
