@@ -20,7 +20,7 @@ export default function Dashboard() {
 		dispatch(getCurrentProfile());
 	}, [dispatch]);
 
-	if (profile && loading === null) {
+	if ((profile && loading === null) || loading) {
 		return <span className='loading loading-spinner loading-lg'></span>;
 	}
 	function deleteUser() {
@@ -33,7 +33,7 @@ export default function Dashboard() {
 			<p className='mb-4 text-2xl'>
 				<i className='fas fa-user'></i>Welcome {user && user.name}
 			</p>
-			{profile !== null ? (
+			{profile !== null && !loading ? (
 				<>
 					<DashboardActions />
 					<Experience experience={(profile as any)?.experience} />
@@ -51,7 +51,7 @@ export default function Dashboard() {
 						</button>
 					</div>
 				</>
-			) : (
+			) : profile === null && !loading ? (
 				<>
 					<p>You have not set up a profile yet, get started below </p>
 					<Link
@@ -61,6 +61,8 @@ export default function Dashboard() {
 						Create Profile
 					</Link>
 				</>
+			) : (
+				<span className='loading loading-spinner loading-lg'></span>
 			)}
 		</PrivateRoute>
 	);

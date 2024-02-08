@@ -28,6 +28,8 @@ const {
 	UPDATE_PROFILE,
 	CLEAR_PROFILE,
 	DELETE_ACCOUNT,
+	GET_PROFILES,
+	GET_REPOS,
 } = ActionType;
 
 //get current users profile
@@ -37,6 +39,61 @@ export const getCurrentProfile =
 		try {
 			const res = await axios.get(`${DATABASE}/api/profile/me`);
 			dispatch({ type: GET_PROFILE, payload: res.data });
+		} catch (error: any) {
+			dispatch({
+				type: PROFILE_ERROR,
+				payload: {
+					msg: error?.response?.statusText,
+					status: error?.response?.status,
+				},
+			});
+		}
+	};
+
+//Get All Profiles
+export const getProfiles =
+	(): ThunkAction<void, RootState, unknown, UnknownAction> =>
+	async (dispatch) => {
+		dispatch({ type: CLEAR_PROFILE });
+		try {
+			const res = await axios.get(`${DATABASE}/api/profile`);
+			dispatch({ type: GET_PROFILES, payload: res.data });
+		} catch (error: any) {
+			dispatch({
+				type: PROFILE_ERROR,
+				payload: {
+					msg: error?.response?.statusText,
+					status: error?.response?.status,
+				},
+			});
+		}
+	};
+
+//Get Profile by ID
+export const getProfileById =
+	(userId: string): ThunkAction<void, RootState, unknown, UnknownAction> =>
+	async (dispatch) => {
+		dispatch({ type: CLEAR_PROFILE });
+		try {
+			const res = await axios.get(`${DATABASE}/api/profile/user/${userId}`);
+			dispatch({ type: GET_PROFILE, payload: res.data });
+		} catch (error: any) {
+			dispatch({
+				type: PROFILE_ERROR,
+				payload: {
+					msg: error?.response?.statusText,
+					status: error?.response?.status,
+				},
+			});
+		}
+	};
+//Get GitHubRepos
+export const getGithubRepos =
+	(username: string): ThunkAction<void, RootState, unknown, UnknownAction> =>
+	async (dispatch) => {
+		try {
+			const res = await axios.get(`${DATABASE}/api/profile/github/${username}`);
+			dispatch({ type: GET_REPOS, payload: res.data });
 		} catch (error: any) {
 			dispatch({
 				type: PROFILE_ERROR,

@@ -1,7 +1,13 @@
 import { ActionType } from '@/actions/types';
 import { UnknownAction } from 'redux';
-const { GET_PROFILE, PROFILE_ERROR, CLEAR_PROFILE, UPDATE_PROFILE } =
-	ActionType;
+const {
+	GET_PROFILE,
+	PROFILE_ERROR,
+	CLEAR_PROFILE,
+	UPDATE_PROFILE,
+	GET_PROFILES,
+	GET_REPOS,
+} = ActionType;
 
 interface ProfileState {
 	profile: null | {};
@@ -32,6 +38,12 @@ export default function profile(state = initialSate, action: UnknownAction) {
 				profile: payload,
 				loading: false,
 			};
+		case GET_PROFILES:
+			return {
+				...state,
+				profiles: payload,
+				loading: false,
+			};
 		case PROFILE_ERROR:
 			return {
 				...state,
@@ -40,5 +52,11 @@ export default function profile(state = initialSate, action: UnknownAction) {
 			};
 		case CLEAR_PROFILE:
 			return { ...state, profile: null, repos: [], loading: false };
+		case GET_REPOS:
+			return {
+				...state,
+				repos: payload,
+				loading: false,
+			};
 	}
 }

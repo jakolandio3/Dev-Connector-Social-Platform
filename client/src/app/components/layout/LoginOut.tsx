@@ -31,7 +31,11 @@ export default function LoginOut() {
 						<span className='hidden sm:inline-block'>Dashboard</span>
 					</Link>
 				</li>
-
+				<li>
+					<Link href={'/profiles'} className='hover:text-primary'>
+						Developers
+					</Link>
+				</li>
 				<li>
 					<button onClick={handleLogOut} className='hover:text-primary'>
 						<span className=' fas fa-sign-out-alt'></span>{' '}
