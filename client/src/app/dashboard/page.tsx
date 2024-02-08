@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import PrivateRoute from '../components/routing/PrivateRoute';
 import { useTypedSelector } from '@/hooks/useTypedSelector';
 import { useDispatch } from 'react-redux';
-import { getCurrentProfile } from '@/actions/profile';
+import { deleteAccount, getCurrentProfile } from '@/actions/profile';
 import Link from 'next/link';
 import Alert from '../components/layout/Alert';
 import DashboardActions from '../components/profile-forms/DashboardActions';
@@ -23,6 +23,9 @@ export default function Dashboard() {
 	if (profile && loading === null) {
 		return <span className='loading loading-spinner loading-lg'></span>;
 	}
+	function deleteUser() {
+		dispatch(deleteAccount());
+	}
 	return (
 		<PrivateRoute>
 			<Alert />
@@ -35,6 +38,18 @@ export default function Dashboard() {
 					<DashboardActions />
 					<Experience experience={(profile as any)?.experience} />
 					<Education education={(profile as any)?.education} />
+
+					<div className='my-4 inline-block py-2 px-5 transition-all ease-in-out duration-300 mb-1 bg-danger text-[#333] rounded-xl hover:opacity-80'>
+						<button
+							onClick={() => deleteUser()}
+							className='flex flex-row gap-2'
+						>
+							<i className='fas fa-user-minus'>
+								{' '}
+								<span> DELETE ACCOUNT</span>
+							</i>
+						</button>
+					</div>
 				</>
 			) : (
 				<>

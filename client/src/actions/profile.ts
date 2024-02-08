@@ -22,7 +22,13 @@ interface ProfileFormData {
 	instagram?: string;
 }
 
-const { GET_PROFILE, PROFILE_ERROR, UPDATE_PROFILE } = ActionType;
+const {
+	GET_PROFILE,
+	PROFILE_ERROR,
+	UPDATE_PROFILE,
+	CLEAR_PROFILE,
+	DELETE_ACCOUNT,
+} = ActionType;
 
 //get current users profile
 export const getCurrentProfile =
@@ -161,5 +167,90 @@ export const addEducation =
 					status: error?.response?.status,
 				},
 			});
+		}
+	};
+
+//Delete experience
+export const deleteExperience =
+	(id: string): ThunkAction<void, RootState, unknown, UnknownAction> =>
+	async (dispatch) => {
+		try {
+			const res = await axios.delete(
+				`${DATABASE}/api/profile/experience/${id}`
+			);
+			dispatch({ type: UPDATE_PROFILE, payload: res.data });
+			dispatch(setAlert('Experience Removed', 'success'));
+		} catch (error: any) {
+			const errorArr = error?.response?.data?.errors;
+			if (errorArr) {
+				errorArr.forEach((error: any) =>
+					dispatch(setAlert(error.msg, 'danger'))
+				);
+			}
+			dispatch({
+				type: PROFILE_ERROR,
+				payload: {
+					msg: error?.response?.statusText,
+					status: error?.response?.status,
+				},
+			});
+		}
+	};
+//Delete Education
+export const deleteEducation =
+	(id: string): ThunkAction<void, RootState, unknown, UnknownAction> =>
+	async (dispatch) => {
+		try {
+			const res = await axios.delete(`${DATABASE}/api/profile/education/${id}`);
+			dispatch({ type: UPDATE_PROFILE, payload: res.data });
+			dispatch(setAlert('Education Removed', 'success'));
+		} catch (error: any) {
+			const errorArr = error?.response?.data?.errors;
+			if (errorArr) {
+				errorArr.forEach((error: any) =>
+					dispatch(setAlert(error.msg, 'danger'))
+				);
+			}
+			dispatch({
+				type: PROFILE_ERROR,
+				payload: {
+					msg: error?.response?.statusText,
+					status: error?.response?.status,
+				},
+			});
+		}
+	};
+
+//DELETE ACCOUNT & PROFILE
+export const deleteAccount =
+	(): ThunkAction<void, RootState, unknown, UnknownAction> =>
+	async (dispatch) => {
+		if (
+			window.confirm(
+				'Are you sure you wish to Delete your Account? This cannot be undone!'
+			)
+		) {
+			try {
+				await axios.delete(`${DATABASE}/api/profile`);
+				dispatch({ type: CLEAR_PROFILE });
+				dispatch({ type: DELETE_ACCOUNT });
+				dispatch(
+					setAlert('Your account has been successfully deleted', 'success')
+				);
+			} catch (error: any) {
+				const errorArr = error?.response?.data?.errors;
+				if (errorArr) {
+					errorArr.forEach((error: any) =>
+						dispatch(setAlert(error.msg, 'danger'))
+					);
+				}
+				dispatch({
+					type: PROFILE_ERROR,
+					payload: {
+						msg: error?.response?.statusText,
+						status: error?.response?.status,
+					},
+				});
+			}
 		}
 	};

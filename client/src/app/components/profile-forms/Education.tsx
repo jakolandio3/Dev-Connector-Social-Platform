@@ -1,5 +1,8 @@
+'use client';
+import { deleteEducation } from '@/actions/profile';
 import React, { PropsWithChildren } from 'react';
 import Moment from 'react-moment';
+import { useDispatch } from 'react-redux';
 
 interface education {
 	_id: string;
@@ -13,6 +16,12 @@ interface education {
 }
 
 export default function Education({ education }: { education: education[] }) {
+	function deleteEDU(id: string) {
+		console.log(id);
+		dispatch(deleteEducation(id));
+	}
+	const dispatch = useDispatch<any>();
+
 	const educations = education.map((edu) => {
 		return (
 			<tr key={edu._id}>
@@ -23,7 +32,10 @@ export default function Education({ education }: { education: education[] }) {
 					{edu.current ? 'Now' : <Moment format='DD/MM/YYYY'>{edu.to}</Moment>}
 				</td>
 				<td className='mr-2 py-2 mt-4 px-5'>
-					<button className=' bg-danger text-white mr-2 py-2 mt-4 px-5 rounded-xl cursor-pointer hover:opacity-80 my-1'>
+					<button
+						onClick={() => deleteEDU(edu._id)}
+						className=' bg-danger text-white mr-2 py-2 mt-4 px-5 rounded-xl cursor-pointer hover:opacity-80 my-1'
+					>
 						Delete
 					</button>
 				</td>

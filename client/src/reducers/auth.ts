@@ -9,6 +9,7 @@ const {
 	LOGIN_FAIL,
 	LOGIN_SUCCESS,
 	LOGOUT,
+	DELETE_ACCOUNT,
 } = ActionType;
 
 interface AuthState {
@@ -58,6 +59,7 @@ export default function auth(
 		case AUTH_ERROR:
 		case LOGIN_FAIL:
 		case REGISTER_FAIL:
+		case DELETE_ACCOUNT:
 			localStorage.removeItem('token');
 			return {
 				...state,

@@ -1,5 +1,8 @@
-import React, { PropsWithChildren } from 'react';
+'use client';
+import { deleteExperience } from '@/actions/profile';
+import React, { PropsWithChildren, useEffect } from 'react';
 import Moment from 'react-moment';
+import { useDispatch } from 'react-redux';
 
 interface experienceObject {
 	_id: string;
@@ -17,7 +20,13 @@ export default function Experience({
 }: {
 	experience: experienceObject[];
 }) {
-	const experiences = experience.map((exp) => {
+	function deleteEXP(id: string) {
+		console.log(id);
+		dispatch(deleteExperience(id));
+	}
+	const dispatch = useDispatch<any>();
+
+	const experiences = experience?.map((exp) => {
 		return (
 			<tr key={exp._id}>
 				<td className='mr-2 py-2 mt-4 px-5'>{exp.company}</td>
@@ -27,13 +36,17 @@ export default function Experience({
 					{exp.current ? 'Now' : <Moment format='DD/MM/YYYY'>{exp.to}</Moment>}
 				</td>
 				<td className='mr-2 py-2 mt-4 px-5'>
-					<button className=' bg-danger text-white mr-2 py-2 mt-4 px-5 rounded-xl cursor-pointer hover:opacity-80 my-1'>
+					<button
+						onClick={() => deleteEXP(exp._id)}
+						className=' bg-danger text-white mr-2 py-2 mt-4 px-5 rounded-xl cursor-pointer hover:opacity-80 my-1'
+					>
 						Delete
 					</button>
 				</td>
 			</tr>
 		);
 	});
+
 	return (
 		<>
 			<h2 className='my-4 font-bold'>Experience Credentials</h2>
@@ -46,7 +59,7 @@ export default function Experience({
 						<th className='bg-light mr-2 py-2 mt-4 px-8'> </th>
 					</tr>
 				</thead>
-				<tbody>{experiences}</tbody>
+				<tbody>{experiences && experiences}</tbody>
 			</table>
 		</>
 	);

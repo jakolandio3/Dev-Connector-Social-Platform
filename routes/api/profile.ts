@@ -1,7 +1,7 @@
 import { Response, Router } from 'express';
 import authMiddleware from '../../middleware/auth';
 import { Profile } from '../../models/Profile';
-
+import { Post } from '../../models/Post';
 import { check, validationResult } from 'express-validator';
 import { User } from '../../models/User';
 import request from 'request';
@@ -136,8 +136,8 @@ router.get('/user/:user_id', async (req: any, res: Response) => {
 
 router.delete('/', authMiddleware, async (req: any, res: Response) => {
 	try {
-		//@todo - remove user posts
-
+		//remove user posts
+		await Post.deleteMany({ user: req.user.id });
 		//remove profile
 		await Profile.findOneAndDelete({ user: req.user.id });
 		//remove user
@@ -205,7 +205,7 @@ router.delete(
 					.map((item) => item.id)
 					.indexOf(req.params.exp_id);
 
-				if (!removeIndex || removeIndex === -1) return res.send('Id not Valid');
+				if (removeIndex === -1) return res.send('Id not Valid');
 				profile.experience.splice(removeIndex, 1);
 				await profile.save();
 				res.json(profile);
@@ -273,7 +273,7 @@ router.delete(
 					.map((item) => item.id)
 					.indexOf(req.params.edu_id);
 
-				if (!removeIndex || removeIndex === -1)
+				if (removeIndex === -1)
 					return res.send('Id not Valid(No school matches this)');
 				profile.education.splice(removeIndex, 1);
 				await profile.save();

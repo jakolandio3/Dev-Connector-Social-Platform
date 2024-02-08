@@ -100,7 +100,7 @@ export default function AddEducation() {
 								setToDateDisabled(!toDateDisabled);
 							}}
 						/>{' '}
-						I am currently studying this/enrolled
+						I am currently studying/enrolled
 					</p>
 				</div>
 				<div className='my-2'>
