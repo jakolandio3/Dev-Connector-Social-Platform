@@ -38,10 +38,10 @@ export default function ProfileGithub({ username }: { username: string }) {
 					</div>
 					<div className=''>
 						<ul className='min-w-fit'>
-							<li className='text-xl p-1 text-center m-1 border text-[#333] bg-primary rounded-md text-white'>
+							<li className='text-xl p-1 text-center m-1 border  bg-primary rounded-md text-white'>
 								Stars: {repo.stargazers_count}
 							</li>
-							<li className='text-xl p-1 m-1 border text-[#333] bg-dark rounded-md text-white'>
+							<li className='text-xl p-1 m-1 border  bg-dark rounded-md text-white'>
 								Watchers: {repo.watchers}
 							</li>
 							<li className='text-xl p-1 text-center m-1 border text-[#333] bg-white rounded-md'>

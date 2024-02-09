@@ -6,9 +6,9 @@ import { useDispatch } from 'react-redux';
 import { deleteAccount, getCurrentProfile } from '@/actions/profile';
 import Link from 'next/link';
 import Alert from '../components/layout/Alert';
-import DashboardActions from '../components/profile-forms/DashboardActions';
-import Experience from '../components/profile-forms/Experience';
-import Education from '../components/profile-forms/Education';
+import DashboardActions from '../components/profileComponents/DashboardActions';
+import Experience from '../components/profileComponents/Experience';
+import Education from '../components/profileComponents/Education';
 
 export default function Dashboard() {
 	const dispatch = useDispatch<any>();

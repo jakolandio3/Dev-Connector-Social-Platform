@@ -24,16 +24,21 @@ export default function LoginOut() {
 					{' '}
 					welcome {user?.name && firstName}
 				</span>
+				<li>
+					<Link href={'/profiles'} className='hover:text-primary'>
+						Developers
+					</Link>
+				</li>
+				<li>
+					<Link href={'/posts'} className='hover:text-primary'>
+						Posts
+					</Link>
+				</li>
 
 				<li>
 					<Link href={'/dashboard'} className='hover:text-primary'>
 						<span className='fas fa-user'></span>{' '}
 						<span className='hidden sm:inline-block'>Dashboard</span>
-					</Link>
-				</li>
-				<li>
-					<Link href={'/profiles'} className='hover:text-primary'>
-						Developers
 					</Link>
 				</li>
 				<li>

@@ -21,7 +21,6 @@ export default function Experience({
 	experience: experienceObject[];
 }) {
 	function deleteEXP(id: string) {
-		console.log(id);
 		dispatch(deleteExperience(id));
 	}
 	const dispatch = useDispatch<any>();

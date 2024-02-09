@@ -2,16 +2,16 @@
 import { getProfileById } from '@/actions/profile';
 import Container from '@/app/components/layout/Container';
 
-import ProfileAbout from '@/app/components/profile-forms/ProfileAbout';
-import ProfileExperience from '@/app/components/profile-forms/ProfileExperience';
-import ProfileEducation from '@/app/components/profile-forms/ProfileEducation';
-import ProfileTop from '@/app/components/profile-forms/ProfileTop';
+import ProfileAbout from '@/app/components/profileComponents/ProfileAbout';
+import ProfileExperience from '@/app/components/profileComponents/ProfileExperience';
+import ProfileEducation from '@/app/components/profileComponents/ProfileEducation';
+import ProfileTop from '@/app/components/profileComponents/ProfileTop';
 import { profileFromServer } from '@/app/profiles/page';
 import { useTypedSelector } from '@/hooks/useTypedSelector';
 import Link from 'next/link';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import ProfileGithub from '@/app/components/profile-forms/ProfileGithub';
+import ProfileGithub from '@/app/components/profileComponents/ProfileGithub';
 
 export default function ProfilePage({ params }: { params: { _id: string } }) {
 	const dispatch = useDispatch<any>();
@@ -21,9 +21,24 @@ export default function ProfilePage({ params }: { params: { _id: string } }) {
 	const profile = useTypedSelector((state) => state.profile);
 	const auth = useTypedSelector((state) => state.auth);
 	const currentProfile = profile.profile as profileFromServer;
+	if (profile.profile === null && !profile.loading)
+		return (
+			<Container>
+				<h4 className='font-bold italic'>
+					User has not created a profile or has been deactivated
+				</h4>
+				<Link
+					href={'/profiles'}
+					className='inline-block bg-primary text-white mr-2 py-2 mt-4 px-5 rounded-xl hover:opacity-80 my-1'
+				>
+					Back to Profiles
+				</Link>
+			</Container>
+		);
+
 	return (
 		<Container>
-			{profile.profile == null ||
+			{profile.profile === null ||
 			(profile.profile as profileFromServer).loading ? (
 				<span className='loading loading-spinner loading-lg'></span>
 			) : (

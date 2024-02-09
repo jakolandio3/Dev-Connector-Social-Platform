@@ -4,7 +4,7 @@ import { useTypedSelector } from '@/hooks/useTypedSelector';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import Container from '../components/layout/Container';
-import ProfileItem from '../components/profile-forms/ProfileItem';
+import ProfileItem from '../components/profileComponents/ProfileItem';
 
 export interface profileFromServer {
 	social?: {
