@@ -126,7 +126,7 @@ router.put('/like/:id', authMiddleware, async (req: any, res: Response) => {
 router.put('/unlike/:id', authMiddleware, async (req: any, res: Response) => {
 	try {
 		const post = await Post.findById(req.params.id);
-		console.log(post);
+
 		if (!post) return res.send('No likes by this user');
 		//chek to see if theres a like in here from current user
 		if (
