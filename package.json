@@ -4,7 +4,7 @@
   "description": "small application for a social network",
   "main": "server.ts",
   "scripts": {
-    "start": "node server",
+    "start": "nodemon server",
     "server": "nodemon server",
     "client": "npm run dev --prefix client",
     "dev": "concurrently npm:server npm:client",
