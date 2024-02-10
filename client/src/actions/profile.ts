@@ -92,7 +92,9 @@ export const getGithubRepos =
 	(username: string): ThunkAction<void, RootState, unknown, UnknownAction> =>
 	async (dispatch) => {
 		try {
-			const res = await axios.get(`/api/profile/github/${username}`);
+			const res = await axios.get(
+				`https://nameless-sands-84347-a40959803055.herokuapp.com/api/profile/github/${username}`
+			);
 			dispatch({ type: GET_REPOS, payload: res.data });
 		} catch (error: any) {
 			dispatch({
@@ -160,7 +162,11 @@ export const addExperience =
 				},
 			};
 			const data = JSON.stringify(formData);
-			const res = await axios.put(`/api/profile/experience`, data, config);
+			const res = await axios.put(
+				`https://nameless-sands-84347-a40959803055.herokuapp.com/api/profile/experience`,
+				data,
+				config
+			);
 
 			dispatch({ type: UPDATE_PROFILE, payload: res.data });
 			dispatch(setAlert('Experience Added', 'success'));
@@ -196,7 +202,11 @@ export const addEducation =
 				},
 			};
 			const data = JSON.stringify(formData);
-			const res = await axios.put(`/api/profile/education`, data, config);
+			const res = await axios.put(
+				`https://nameless-sands-84347-a40959803055.herokuapp.com/api/profile/education`,
+				data,
+				config
+			);
 
 			dispatch({ type: UPDATE_PROFILE, payload: res.data });
 			dispatch(setAlert('Education Added', 'success'));
@@ -248,7 +258,9 @@ export const deleteEducation =
 	(id: string): ThunkAction<void, RootState, unknown, UnknownAction> =>
 	async (dispatch) => {
 		try {
-			const res = await axios.delete(`/api/profile/education/${id}`);
+			const res = await axios.delete(
+				`https://nameless-sands-84347-a40959803055.herokuapp.com/api/profile/education/${id}`
+			);
 			dispatch({ type: UPDATE_PROFILE, payload: res.data });
 			dispatch(setAlert('Education Removed', 'success'));
 		} catch (error: any) {
@@ -278,7 +290,9 @@ export const deleteAccount =
 			)
 		) {
 			try {
-				await axios.delete(`/api/profile`);
+				await axios.delete(
+					`https://nameless-sands-84347-a40959803055.herokuapp.com/api/profile`
+				);
 				dispatch({ type: CLEAR_PROFILE });
 				dispatch({ type: DELETE_ACCOUNT });
 				dispatch(

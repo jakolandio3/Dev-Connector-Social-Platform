@@ -105,7 +105,9 @@ export const deletePost =
 	(postId: string): ThunkAction<void, RootState, unknown, UnknownAction> =>
 	async (dispatch) => {
 		try {
-			const res = await axios.delete(`/api/posts/${postId}`);
+			const res = await axios.delete(
+				`https://nameless-sands-84347-a40959803055.herokuapp.com/api/posts/${postId}`
+			);
 
 			dispatch({
 				type: DELETE_POST,
@@ -133,7 +135,11 @@ export const addPost =
 			},
 		};
 		try {
-			const res = await axios.post(`/api/posts`, formData, config);
+			const res = await axios.post(
+				`https://nameless-sands-84347-a40959803055.herokuapp.com/api/posts`,
+				formData,
+				config
+			);
 
 			dispatch({
 				type: ADD_POST,
@@ -165,7 +171,7 @@ export const addComment =
 		};
 		try {
 			const res = await axios.post(
-				`/api/posts/comment/${postId}`,
+				`https://nameless-sands-84347-a40959803055.herokuapp.com/api/posts/comment/${postId}`,
 				formData,
 				config
 			);
@@ -195,7 +201,7 @@ export const deleteComment =
 	async (dispatch) => {
 		try {
 			const res = await axios.delete(
-				`/api/posts/comment/${postId}/${commentId}`
+				`https://nameless-sands-84347-a40959803055.herokuapp.com/api/posts/comment/${postId}/${commentId}`
 			);
 
 			dispatch({

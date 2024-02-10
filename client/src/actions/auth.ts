@@ -53,7 +53,11 @@ export const register =
 		};
 		const body = JSON.stringify({ name, email, password });
 		try {
-			const res = await axios.post(`/api/users`, body, config);
+			const res = await axios.post(
+				`https://nameless-sands-84347-a40959803055.herokuapp.com/api/users`,
+				body,
+				config
+			);
 
 			dispatch({
 				type: REGISTER_SUCCESS,
@@ -85,7 +89,11 @@ export const login =
 		};
 		const body = JSON.stringify({ email, password });
 		try {
-			const res = await axios.post(`/api/auth`, body, config);
+			const res = await axios.post(
+				`https://nameless-sands-84347-a40959803055.herokuapp.com/api/auth`,
+				body,
+				config
+			);
 
 			dispatch({
 				type: LOGIN_SUCCESS,
