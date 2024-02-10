@@ -4,9 +4,10 @@
   "description": "small application for a social network",
   "main": "server.ts",
   "scripts": {
-    "start": "nodemon server",
+    "start": "concurrently nodemon server npm:client:prod",
     "server": "nodemon server",
-    "client": "npm run dev --prefix client",
+    "client:dev": "npm run dev --prefix client",
+    "client:prod": "npm run start --prefix client",
     "dev": "concurrently npm:server npm:client",
     "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
