@@ -48,8 +48,8 @@ export default function CreateProfile() {
 			<Alert />
 			<h1 className='text-3xl text-primary'>Create Your Profile</h1>
 			<p className='text-lg my-4'>
-				<i className='fas fa-user'></i> Let's get some information to make your
-				profile stand out
+				<i className='fas fa-user'></i> Let{"'"}s get some information to make
+				your profile stand out
 			</p>
 			<small>* = required field</small>
 			<form className='my-5' onSubmit={(e) => onSubmit(e)}>

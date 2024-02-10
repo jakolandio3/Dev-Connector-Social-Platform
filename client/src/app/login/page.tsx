@@ -76,7 +76,7 @@ export default function Login() {
 				/>
 			</form>
 			<p className='my-1'>
-				Don't have an account? <Link href='/register'>Sign Up</Link>
+				Don{"'"}t have an account? <Link href='/register'>Sign Up</Link>
 			</p>
 		</Container>
 	);
