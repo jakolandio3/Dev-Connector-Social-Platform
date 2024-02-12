@@ -31,7 +31,9 @@ export const loadUser =
 			setAuthToken(localStorage.token);
 		}
 		try {
-			const res = await axios.get(`/api/auth`);
+			const res = await axios.get(
+				`https://dev-social-server.onrender.com/api/auth`
+			);
 			dispatch({ type: USER_LOADED, payload: res.data });
 		} catch (error) {
 			dispatch({ type: AUTH_ERROR });
@@ -54,7 +56,7 @@ export const register =
 		const body = JSON.stringify({ name, email, password });
 		try {
 			const res = await axios.post(
-				`https://nameless-sands-84347-a40959803055.herokuapp.com/api/users`,
+				`https://dev-social-server.onrender.com/api/users`,
 				body,
 				config
 			);
@@ -90,7 +92,7 @@ export const login =
 		const body = JSON.stringify({ email, password });
 		try {
 			const res = await axios.post(
-				`https://nameless-sands-84347-a40959803055.herokuapp.com/api/auth`,
+				`https://dev-social-server.onrender.com/api/auth`,
 				body,
 				config
 			);
