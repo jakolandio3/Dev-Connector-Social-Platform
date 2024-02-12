@@ -38,8 +38,11 @@ export default function Login() {
 		<Container>
 			<Alert />
 			<h1 className=' text-5xl mb-4 text-primary'>Sign In</h1>
-			<p className='text-2xl mb-4'>
-				<i className='fas fa-user'></i> Sign Into your Account
+			<p className='text-2xl mb-4 text-[cornsilk]'>
+				<i className='fas fa-user'></i>{' '}
+				<span className='text-[cornsilk]'>
+					{'<'}Sign in to Your Account{'/>'}
+				</span>
 			</p>
 			<form className='my-4' onSubmit={(e) => onSubmit(e)}>
 				<div className='my-4'>
@@ -52,10 +55,6 @@ export default function Login() {
 						name='email'
 						required
 					/>
-					<small className='block mt-1 text-[#888]'>
-						This site uses Gravatar so if you want a profile image, use a
-						Gravatar email
-					</small>
 				</div>
 				<div className='my-4'>
 					<input
@@ -76,7 +75,10 @@ export default function Login() {
 				/>
 			</form>
 			<p className='my-1'>
-				Don{"'"}t have an account? <Link href='/register'>Sign Up</Link>
+				Don{"'"}t have an account?{' '}
+				<Link href='/register' className='text-primary underline'>
+					Sign Up
+				</Link>
 			</p>
 		</Container>
 	);

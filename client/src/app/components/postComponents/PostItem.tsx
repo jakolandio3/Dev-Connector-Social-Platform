@@ -32,14 +32,22 @@ export default function PostItem({
 									src={`https:${post.avatar}`}
 									alt='avatar'
 								/>
-								<h4 className='font-bold text-center text-primary'>
-									{post.name}
+								<h4 className='font-extrabold text-center text-primary'>
+									<code>
+										{'<'}
+										{post.name}
+										{'/>'}
+									</code>
 								</h4>
 							</Link>
 						</div>
 						<div className='flex flex-col justify-between items-center w-[90%]'>
-							<div className=''>
-								<p className='my-4'>{post.text}</p>
+							<div className='text-left w-full pl-5 italic font-bold'>
+								<p className='my-4'>
+									{'"'}
+									{post.text}
+									{'"'}
+								</p>
 							</div>
 							<div className=''>
 								<p className='text-[#aaa] text-md italic mb-3 text-center'>
@@ -52,7 +60,7 @@ export default function PostItem({
 												dispatchFunction(addLike(post._id));
 											}}
 											type='button'
-											className='text-xl p-1 text-center m-1 border  bg-primary rounded-md text-white'
+											className='text-xl p-1 text-center m-1 border hover:opacity-80  bg-primary rounded-md text-white'
 										>
 											<i className='fas fa-thumbs-up'></i>
 											<span>
@@ -62,24 +70,26 @@ export default function PostItem({
 										<button
 											onClick={() => dispatchFunction(removeLike(post._id))}
 											type='button'
-											className='text-xl p-1 text-center m-1 px-2 border text-[#333] bg-light rounded-md'
+											className='text-xl p-1 text-center m-1 hover:opacity-80 px-2 border text-[#333] bg-red-600 rounded-md'
 										>
 											<i className='fas fa-thumbs-down'></i>
 										</button>
 										<Link
 											href={`/post/${post._id}`}
-											className='text-xl p-2 text-center m-1 border  bg-primary rounded-md text-white'
+											className='text-xl p-2 text-center m-1 border hover:opacity-80  bg-primary rounded-md text-white'
 										>
-											Discussion{' '}
+											Comments{' '}
 											<span className='comment-count'>
-												{post.comments.length > 0 && post.comments.length}
+												{'['}
+												{post.comments.length > 0 ? post.comments.length : '0'}
+												{']'}
 											</span>
 										</Link>
 										{!auth.loading && post.user === (auth.user as any)._id && (
 											<button
 												type='button'
 												onClick={() => dispatchFunction(deletePost(post._id))}
-												className='text-xl p-1 px-3 text-center m-1 border bg-danger rounded-md text-whiter'
+												className='text-xl p-1 px-3 text-center m-1 hover:opacity-80 border bg-red-800 rounded-md text-white'
 											>
 												<i className='fas fa-times'></i>
 											</button>

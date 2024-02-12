@@ -22,7 +22,7 @@ export default function RootLayout({
 					strategy='afterInteractive'
 				></Script>
 			</head>
-			<body className=' body'>
+			<body className=' bg-gray-600'>
 				<ReducerProvider>
 					<Navbar />
 					{children}

@@ -10,6 +10,8 @@ const {
 	LOGIN_SUCCESS,
 	LOGOUT,
 	DELETE_ACCOUNT,
+	LOADING_DATA,
+	LOADED_DATA,
 } = ActionType;
 
 interface AuthState {
@@ -55,6 +57,10 @@ export default function auth(
 				isAuthenticated: true,
 				loading: false,
 			};
+		case LOADING_DATA:
+			return { ...state, loading: true };
+		case LOADED_DATA:
+			return { ...state, loading: false };
 		case LOGOUT:
 		case AUTH_ERROR:
 		case LOGIN_FAIL:

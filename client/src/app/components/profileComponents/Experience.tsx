@@ -27,7 +27,7 @@ export default function Experience({
 
 	const experiences = experience?.map((exp) => {
 		return (
-			<tr key={exp._id}>
+			<tr key={exp._id} className='border'>
 				<td className='mr-2 py-2 mt-4 px-5'>{exp.company}</td>
 				<td className='mr-2 py-2 mt-4 px-5'>{exp.title}</td>
 				<td className='mr-2 py-2 mt-4 px-5'>
@@ -48,8 +48,10 @@ export default function Experience({
 
 	return (
 		<>
-			<h2 className='my-4 font-bold'>Experience Credentials</h2>
-			<table>
+			<code className='text-primary text-2xl font-extrabold'>
+				{'<'}Experience_Credentials{'/>'}
+			</code>
+			<table className='bg-[dark] border'>
 				<thead>
 					<tr>
 						<th className='bg-light mr-2 py-2 mt-4 px-8'>Company</th>

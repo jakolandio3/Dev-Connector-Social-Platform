@@ -5,6 +5,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import Container from '../components/layout/Container';
 import ProfileItem from '../components/profileComponents/ProfileItem';
+import LoadingScreen from '../components/layout/LoadingScreen';
 
 export interface profileFromServer {
 	social?: {
@@ -48,17 +49,19 @@ export default function Profiles() {
 		dispatch(getProfiles());
 	}, [dispatch]);
 	return (
-		<Container>
+		<>
 			{loading ? (
-				<span className='loading loading-ring loading-lg'></span>
+				<LoadingScreen />
 			) : (
-				<>
-					<h1 className='text-primary text-4xl'>Developers</h1>
-					<p className=' text-xl'>
+				<Container>
+					<code className='text-primary text-4xl font-extrabold'>
+						{'<'}Developers{'>'}
+					</code>
+					<p className=' text-2xl font-bold text-[cornsilk]'>
 						<i className='my-4 fab fa-connectdevelop'></i>
-						Browse and connect with developers
+						{'<'}Browse and connect with developers{'/>'}
 					</p>
-					<div className='grid grid-cols-1 text-center'>
+					<div className='grid grid-cols-1 gap-6 my-4 text-center'>
 						{(profiles as profileFromServer[]).length > 0 ? (
 							(profiles as profileFromServer[]).map((profile) => (
 								<ProfileItem key={profile._id} profile={profile} />
@@ -67,8 +70,11 @@ export default function Profiles() {
 							<h4>No Profiles Found 🤦‍♂️🤦‍♂️</h4>
 						)}
 					</div>
-				</>
+					<code className='text-primary text-4xl font-extrabold'>
+						{'</'}Developers{'>'}
+					</code>
+				</Container>
 			)}
-		</Container>
+		</>
 	);
 }

@@ -30,6 +30,8 @@ const {
 	DELETE_ACCOUNT,
 	GET_PROFILES,
 	GET_REPOS,
+	LOADING_DATA,
+	LOADED_DATA,
 } = ActionType;
 
 //get current users profile
@@ -37,10 +39,12 @@ export const getCurrentProfile =
 	(): ThunkAction<void, RootState, unknown, UnknownAction> =>
 	async (dispatch) => {
 		try {
+			dispatch({ type: LOADING_DATA });
 			const res = await axios.get(
 				`https://dev-social-server.onrender.com/api/profile/me`
 			);
 			dispatch({ type: GET_PROFILE, payload: res.data });
+			dispatch({ type: LOADED_DATA });
 		} catch (error: any) {
 			dispatch({
 				type: PROFILE_ERROR,
@@ -58,10 +62,12 @@ export const getProfiles =
 	async (dispatch) => {
 		dispatch({ type: CLEAR_PROFILE });
 		try {
+			dispatch({ type: LOADING_DATA });
 			const res = await axios.get(
 				`https://dev-social-server.onrender.com/api/profile`
 			);
 			dispatch({ type: GET_PROFILES, payload: res.data });
+			dispatch({ type: LOADED_DATA });
 		} catch (error: any) {
 			dispatch({
 				type: PROFILE_ERROR,
@@ -79,10 +85,12 @@ export const getProfileById =
 	async (dispatch) => {
 		dispatch({ type: CLEAR_PROFILE });
 		try {
+			dispatch({ type: LOADING_DATA });
 			const res = await axios.get(
 				`https://dev-social-server.onrender.com/api/profile/user/${userId}`
 			);
 			dispatch({ type: GET_PROFILE, payload: res.data });
+			dispatch({ type: LOADED_DATA });
 		} catch (error: any) {
 			dispatch({
 				type: PROFILE_ERROR,

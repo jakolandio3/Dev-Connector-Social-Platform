@@ -11,6 +11,7 @@ import Alert from '@/app/components/layout/Alert';
 
 import CommentForm from '@/app/components/postComponents/CommentForm';
 import CommentItem from '@/app/components/postComponents/CommentItem';
+import LoadingScreen from '@/app/components/layout/LoadingScreen';
 
 export default function PostPage({ params }: { params: { _id: string } }) {
 	const dispatch = useDispatch<any>();
@@ -21,7 +22,7 @@ export default function PostPage({ params }: { params: { _id: string } }) {
 	const { loading, post } = useTypedSelector((state) => state.post);
 	return loading || post === null ? (
 		<PrivateRoute>
-			<span className='loading loading-spinner loading-lg'></span>
+			<LoadingScreen />
 		</PrivateRoute>
 	) : (
 		<PrivateRoute>
@@ -44,14 +45,23 @@ export default function PostPage({ params }: { params: { _id: string } }) {
 							src={`https:${(post as postState).avatar}`}
 							alt='avatar'
 						/>
-						<h4 className='font-bold text-center text-primary'>
-							{(post as postState).name}
+
+						<h4 className='font-extrabold text-center text-primary'>
+							<code>
+								{'<'}
+								{(post as postState).name}
+								{'/>'}
+							</code>
 						</h4>
 					</Link>
 				</div>
 				<div className='flex flex-col justify-between items-center w-[90%]'>
-					<div className=''>
-						<p className='my-4'>{(post as postState).text}</p>
+					<div className='text-center w-full text-xl pl-5 italic font-bold'>
+						<p className='my-4'>
+							{'"'}
+							{(post as postState).text}
+							{'"'}
+						</p>
 					</div>
 					<div className=''>
 						<p className='text-[#aaa] text-md italic mb-3 text-center'>
