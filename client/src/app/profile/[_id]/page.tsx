@@ -12,6 +12,7 @@ import Link from 'next/link';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import ProfileGithub from '@/app/components/profileComponents/ProfileGithub';
+import LoadingScreen from '@/app/components/layout/LoadingScreen';
 
 export default function ProfilePage({ params }: { params: { _id: string } }) {
 	const dispatch = useDispatch<any>();
@@ -40,7 +41,7 @@ export default function ProfilePage({ params }: { params: { _id: string } }) {
 		<Container>
 			{profile.profile === null ||
 			(profile.profile as profileFromServer).loading ? (
-				<span className='loading loading-spinner loading-lg'></span>
+				<LoadingScreen />
 			) : (
 				<>
 					<Link

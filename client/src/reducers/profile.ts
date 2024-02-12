@@ -7,6 +7,7 @@ const {
 	UPDATE_PROFILE,
 	GET_PROFILES,
 	GET_REPOS,
+	LOADING_DATA,
 } = ActionType;
 
 interface ProfileState {
@@ -50,6 +51,8 @@ export default function profile(state = initialSate, action: UnknownAction) {
 				error: payload,
 				loading: false,
 			};
+		case LOADING_DATA:
+			return { ...state, loading: true };
 		case CLEAR_PROFILE:
 			return { ...state, profile: null, repos: [], loading: false };
 		case GET_REPOS:

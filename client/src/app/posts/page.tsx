@@ -8,6 +8,7 @@ import { postState } from '@/reducers/post';
 import PostItem from '../components/postComponents/PostItem';
 import Alert from '../components/layout/Alert';
 import PostForm from '../components/postComponents/PostForm';
+import LoadingScreen from '../components/layout/LoadingScreen';
 
 export default function Posts() {
 	const dispatch = useDispatch<any>();
@@ -21,15 +22,21 @@ export default function Posts() {
 		<PrivateRoute>
 			<Alert />
 			{loading ? (
-				<span className='loading loading-spinner loading-lg'></span>
+				<LoadingScreen />
 			) : (
 				<>
-					<h1 className=' text-primary text-4xl '>Posts</h1>
-					<p className='text-2xl'>
-						<i className='fas fa-user mt-4'></i>Welcome to the community
+					<code className=' text-primary text-4xl font-extrabold '>
+						{'<'}Posts{'>'}
+					</code>
+					<p className='text-2xl text-[cornsilk]'>
+						<i className='fas fa-signs-post mt-4'></i> {'<'}Welcome to the
+						community{'/>'}
 					</p>
 					<PostForm />
 					<PostItem post={posts} dispatchFunction={dispatch} />
+					<code className=' text-primary text-4xl font-extrabold '>
+						{'</'}Posts{'>'}
+					</code>
 				</>
 			)}
 		</PrivateRoute>

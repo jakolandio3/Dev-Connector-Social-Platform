@@ -24,7 +24,7 @@ export default function Education({ education }: { education: education[] }) {
 
 	const educations = education.map((edu) => {
 		return (
-			<tr key={edu._id}>
+			<tr key={edu._id} className='border'>
 				<td className='mr-2 py-2 mt-4 px-5'>{edu.school}</td>
 				<td className='mr-2 py-2 mt-4 px-5'>{edu.degree}</td>
 				<td className='mr-2 py-2 mt-4 px-5'>
@@ -44,8 +44,10 @@ export default function Education({ education }: { education: education[] }) {
 	});
 	return (
 		<>
-			<h2 className='my-4 font-bold'>Education Credentials</h2>
-			<table>
+			<code className='text-primary text-2xl font-extrabold'>
+				{'<'}Education_Credentials{'/>'}
+			</code>
+			<table className='bg-[dark] border'>
 				<thead>
 					<tr>
 						<th className='bg-light mr-2 py-2 mt-4 px-8'>School</th>

@@ -47,8 +47,11 @@ function Register(props: any) {
 		<Container>
 			<Alert />
 			<h1 className=' text-5xl mb-4 text-primary'>Sign Up</h1>
-			<p className='text-2xl mb-4'>
-				<i className='fas fa-user'></i> Create Your Account
+			<p className='text-2xl mb-4 text-[cornsilk]'>
+				<i className='fas fa-user'></i>{' '}
+				<span className='text-[cornsilk]'>
+					{'<'}Create Your Account{'/>'}
+				</span>
 			</p>
 
 			<form className='my-4' onSubmit={(e) => onSubmit(e)}>
@@ -73,7 +76,7 @@ function Register(props: any) {
 						name='email'
 						required
 					/>
-					<small className='block mt-1 text-[#888]'>
+					<small className='block mt-1 italic opacity-70 text-[cornsilk]'>
 						This site uses Gravatar so if you want a profile image, use a
 						Gravatar email
 					</small>
@@ -109,7 +112,10 @@ function Register(props: any) {
 				/>
 			</form>
 			<p className='my-1'>
-				Already have an account? <Link href='/login'>Sign In</Link>
+				Already have an account?{' '}
+				<Link href='/login' className='underline text-primary'>
+					Sign In
+				</Link>
 			</p>
 		</Container>
 	);

@@ -9,6 +9,7 @@ import Alert from '../components/layout/Alert';
 import DashboardActions from '../components/profileComponents/DashboardActions';
 import Experience from '../components/profileComponents/Experience';
 import Education from '../components/profileComponents/Education';
+import LoadingScreen from '../components/layout/LoadingScreen';
 
 export default function Dashboard() {
 	const dispatch = useDispatch<any>();
@@ -21,7 +22,7 @@ export default function Dashboard() {
 	}, [dispatch]);
 
 	if ((profile && loading === null) || loading) {
-		return <span className='loading loading-spinner loading-lg'></span>;
+		return <LoadingScreen />;
 	}
 	function deleteUser() {
 		dispatch(deleteAccount());
@@ -29,20 +30,22 @@ export default function Dashboard() {
 	return (
 		<PrivateRoute>
 			<Alert />
-			<h1 className='text-primary text-4xl mb-4'>Dashboard</h1>
-			<p className='mb-4 text-2xl'>
-				<i className='fas fa-user'></i>Welcome {user && user.name}
+			<code className='text-primary text-4xl font-extrabold'>
+				{'<'}Dashboard{'>'}
+			</code>
+			<p className='text-2xl font-bold text-[cornsilk]'>
+				<i className='my-4 fas fa-user'></i>Welcome {user && user.name}
 			</p>
 			{profile !== null && !loading ? (
-				<>
+				<div className='flex flex-col w-fit gap-4'>
 					<DashboardActions />
 					<Experience experience={(profile as any)?.experience} />
 					<Education education={(profile as any)?.education} />
 
-					<div className='my-4 inline-block py-2 px-5 transition-all ease-in-out duration-300 mb-1 bg-danger text-[#333] rounded-xl hover:opacity-80'>
+					<div className='my-4 flex '>
 						<button
 							onClick={() => deleteUser()}
-							className='flex flex-row gap-2'
+							className='w-fit justify-center bg-danger  py-2 px-5 transition-all ease-in-out duration-300 mb-1  text-[#333] rounded-xl hover:opacity-80'
 						>
 							<i className='fas fa-user-minus'>
 								{' '}
@@ -50,7 +53,7 @@ export default function Dashboard() {
 							</i>
 						</button>
 					</div>
-				</>
+				</div>
 			) : profile === null && !loading ? (
 				<>
 					<p>You have not set up a profile yet, get started below </p>
@@ -64,6 +67,10 @@ export default function Dashboard() {
 			) : (
 				<span className='loading loading-spinner loading-lg'></span>
 			)}
+			<br />
+			<code className='text-primary text-4xl font-extrabold'>
+				{'</'}Dashboard{'>'}
+			</code>
 		</PrivateRoute>
 	);
 }

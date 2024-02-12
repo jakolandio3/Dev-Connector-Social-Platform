@@ -67,7 +67,7 @@ export default function EditProfile() {
 				loading || !(profile as any).social ? '' : (profile as any).instagram,
 		});
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [loading, dispatch]);
+	}, [dispatch]);
 	function onChange(
 		e: React.ChangeEvent<
 			HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
