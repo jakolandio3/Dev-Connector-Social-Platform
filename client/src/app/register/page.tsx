@@ -115,4 +115,4 @@ function Register(props: any) {
 	);
 }
 
-export default connect(null, { setAlert })(Register);
+export default Register;
