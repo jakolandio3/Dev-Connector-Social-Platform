@@ -27,10 +27,10 @@ export default function Experience({
 
 	const experiences = experience?.map((exp) => {
 		return (
-			<tr key={exp._id} className='border'>
-				<td className='mr-2 py-2 mt-4 px-5'>{exp.company}</td>
-				<td className='mr-2 py-2 mt-4 px-5'>{exp.title}</td>
-				<td className='mr-2 py-2 mt-4 px-5'>
+			<tr key={exp._id} className='border text-center'>
+				<td className='md:mr-2 py-2 mt-4 md:px-5'>{exp.company}</td>
+				<td className='md:mr-2 py-2 mt-4 md:px-5'>{exp.title}</td>
+				<td className='md:mr-2 py-2 mt-4 md:px-5'>
 					<Moment format='DD/MM/YYYY'>{exp.from}</Moment> -{' '}
 					{exp.current ? 'Now' : <Moment format='DD/MM/YYYY'>{exp.to}</Moment>}
 				</td>
@@ -49,15 +49,16 @@ export default function Experience({
 	return (
 		<>
 			<code className='text-primary text-2xl font-extrabold'>
+				md:
 				{'<'}Experience_Credentials{'/>'}
 			</code>
-			<table className='bg-[dark] border'>
+			<table className='bg-[dark] border '>
 				<thead>
 					<tr>
-						<th className='bg-light mr-2 py-2 mt-4 px-8'>Company</th>
-						<th className='bg-light mr-2 py-2 mt-4 px-8'>Title</th>
-						<th className='bg-light mr-2 py-2 mt-4 px-8'>Years</th>
-						<th className='bg-light mr-2 py-2 mt-4 px-8'> </th>
+						<th className='bg-light md:mr-2 py-2 mt-4 md:px-8'>Company</th>
+						<th className='bg-light md:mr-2 py-2 mt-4 md:px-8'>Title</th>
+						<th className='bg-light md:mr-2 py-2 mt-4 md:px-8'>Years</th>
+						<th className='bg-light md:mr-2 py-2 mt-4 md:px-8'> </th>
 					</tr>
 				</thead>
 				<tbody>{experiences && experiences}</tbody>

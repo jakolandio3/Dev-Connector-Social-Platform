@@ -40,7 +40,7 @@ export default function LoginOut() {
 							<span className='fa fa-users-viewfinder'></span>{' '}
 							<span
 								className={clsx(
-									pathname === '/profiles' ? 'hidden' : 'inline-block'
+									pathname === '/profiles' ? 'hidden' : 'md:inline-block hidden'
 								)}
 							>
 								{' '}
@@ -60,7 +60,7 @@ export default function LoginOut() {
 							<span className='fa-solid fa-signs-post'></span>{' '}
 							<span
 								className={clsx(
-									pathname === '/posts' ? 'hidden' : 'inline-block'
+									pathname === '/posts' ? 'hidden' : 'md:inline-block hidden'
 								)}
 							>
 								Posts
@@ -80,7 +80,9 @@ export default function LoginOut() {
 							<span className='fas fa-user'></span>{' '}
 							<span
 								className={clsx(
-									pathname === '/dashboard' ? 'hidden' : 'inline-block'
+									pathname === '/dashboard'
+										? 'hidden'
+										: ' hidden md:inline-block'
 								)}
 							>
 								Dashboard
@@ -93,7 +95,7 @@ export default function LoginOut() {
 							className='hover:text-primary border rounded-full px-2 border-gray-800 shadow-sm hover:shadow-primary'
 						>
 							<span className=' fas fa-sign-out-alt'></span>{' '}
-							<span className='hidden sm:inline-block'>Logout</span>
+							<span className='hidden  md:inline-block'>Logout</span>
 						</button>
 					</li>
 				</ul>
