@@ -14,6 +14,8 @@ const {
 	GET_POST,
 	ADD_COMMENT,
 	REMOVE_COMMENT,
+	LOADED_DATA,
+	LOADING_DATA,
 } = ActionType;
 
 // Get posts
@@ -43,6 +45,7 @@ export const getPosts =
 export const getPost =
 	(postId: string): ThunkAction<void, RootState, unknown, UnknownAction> =>
 	async (dispatch) => {
+		dispatch({ type: LOADING_DATA });
 		try {
 			const res = await axios.get(
 				`https://dev-social-server.onrender.com/api/posts/${postId}`
@@ -52,6 +55,7 @@ export const getPost =
 				type: GET_POST,
 				payload: res.data,
 			});
+			dispatch({ type: LOADED_DATA });
 		} catch (error: any) {
 			dispatch({
 				type: POST_ERROR,

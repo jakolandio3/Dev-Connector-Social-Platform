@@ -22,7 +22,7 @@ export default function Education({ education }: { education: education[] }) {
 	}
 	const dispatch = useDispatch<any>();
 
-	const educations = education.map((edu) => {
+	const educations = education?.map((edu) => {
 		return (
 			<tr key={edu._id} className='border text-center'>
 				<td className='md:mr-2 py-2 mt-4 md:px-5'>{edu.school}</td>

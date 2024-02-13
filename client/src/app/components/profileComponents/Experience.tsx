@@ -21,6 +21,7 @@ export default function Experience({
 	experience: experienceObject[];
 }) {
 	function deleteEXP(id: string) {
+		console.log(id);
 		dispatch(deleteExperience(id));
 	}
 	const dispatch = useDispatch<any>();
@@ -49,7 +50,6 @@ export default function Experience({
 	return (
 		<>
 			<code className='text-primary text-2xl font-extrabold'>
-				md:
 				{'<'}Experience_Credentials{'/>'}
 			</code>
 			<table className='bg-[dark]'>

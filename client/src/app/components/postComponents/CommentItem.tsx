@@ -22,41 +22,46 @@ export default function CommentItem({
 	const dispatch = useDispatch<any>();
 	const auth = useTypedSelector((state) => state.auth);
 	return (
-		<div className='flex flex-row bg-light border-dashed border border-primary rounded-md gap-12  w-full  p-4 my-4'>
-			<div className='flex text-center'>
+		<div className='flex flex-col w-[80%]   rounded-xl p-1 my-4'>
+			<div className='flex text-center items-center border rounded-t-xl p-1 border-[cornsilk]'>
 				<Link href={`/profile/${user}`}>
 					{/* eslint-disable-next-line @next/next/no-img-element */}
-					<img className='rounded-full' src={`https:${avatar}`} alt='' />
-					<h4 className='font-extrabold text-center text-primary'>
-						<code>
-							{'<'}
-							{name}
-							{'/>'}
-						</code>
-					</h4>
+					<img
+						className='rounded-full w-[48px]'
+						src={`https:${avatar}`}
+						alt=''
+					/>
 				</Link>
+				<h4 className='font-extrabold text-center text-xs w-full text-primary'>
+					<code>
+						-{'<'}
+						{name}
+						{'/>'}
+					</code>
+				</h4>
+				<div className='flex w-full justify-end'>
+					{!auth.loading && user === (auth.user as any)._id && (
+						<button
+							type='button'
+							onClick={() => dispatch(deleteComment(_id, postId))}
+							className='text-sm  px-1 text-center hover:opacity-80'
+						>
+							❌
+						</button>
+					)}
+				</div>
 			</div>
 			<div className='flex flex-col w-full justify-between'>
 				<div className='flex flex-row w-full gap-12 justify-between'>
-					<div className='text-left w-full pl-5 italic font-bold'>
+					<div className='text-left w-full pl-5 italic bg-light rounded-b-xl '>
 						<p className='my-4'>
 							{'"'}
 							{text}
 							{'"'}
 						</p>
 					</div>
-					<div className=''>
-						{!auth.loading && user === auth.user._id && (
-							<button
-								className='text-center'
-								onClick={() => dispatch(deleteComment(_id, postId))}
-							>
-								❌
-							</button>
-						)}
-					</div>
 				</div>
-				<p className='text-sm italic text-[#aaa] text-center'>
+				<p className='text-xs italic text-[#aaa] text-center'>
 					Posted on <Moment format='DD/MM/YYYY'>{date}</Moment>
 				</p>
 			</div>

@@ -29,34 +29,33 @@ export default function PostPage({ params }: { params: { _id: string } }) {
 			<Alert />
 			<Link
 				href={'/posts'}
-				className='inline-block bg-primary text-white mr-2 py-2 mt-4 px-5 rounded-xl hover:opacity-80 my-1'
+				className='inline-block bg-primary text-white  py-2 mt-4 px-5 rounded-xl hover:opacity-80 my-1'
 			>
 				Back to Posts
 			</Link>
 			<div
-				className='flex w-full gap-8  bg-light border border-primary rounded-md p-4 my-4'
+				className='flex flex-col w-full gap-1  bg-light border border-primary rounded-md p-4 my-4'
 				key={(post as postState)._id}
 			>
-				<div className='flex'>
+				<div className='flex flex-row items-center gap-2'>
 					<Link className='' href={`/profile/${(post as postState).user}`}>
 						{/* eslint-disable-next-line @next/next/no-img-element */}
 						<img
-							className='rounded-full'
+							className='rounded-full w-[48px]'
 							src={`https:${(post as postState).avatar}`}
 							alt='avatar'
 						/>
-
-						<h4 className='font-extrabold text-center text-primary'>
-							<code>
-								{'<'}
-								{(post as postState).name}
-								{'/>'}
-							</code>
-						</h4>
 					</Link>
+					<h4 className='font-extrabold text-left w-full text-primary'>
+						<code>
+							-{'<'}
+							{(post as postState).name}
+							{'/>'}
+						</code>
+					</h4>
 				</div>
-				<div className='flex flex-col justify-between items-center w-[90%]'>
-					<div className='text-center w-full text-xl pl-5 italic font-bold'>
+				<div className='flex flex-col justify-between items-center '>
+					<div className='text-left w-full text-xl pl-5 italic font-bold'>
 						<p className='my-4'>
 							{'"'}
 							{(post as postState).text}

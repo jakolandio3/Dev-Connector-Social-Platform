@@ -36,7 +36,7 @@ function Register(props: any) {
 		if (password !== password2) {
 			//can set these in two ways dispatch at least TS knows whats going on
 
-			dispatch(setAlert('another Alert', 'danger'));
+			dispatch(setAlert('Passwords Do not Match', 'danger'));
 		} else {
 			const newUser = { name, email, password };
 			dispatch(register(newUser));

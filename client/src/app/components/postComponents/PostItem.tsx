@@ -21,25 +21,36 @@ export default function PostItem({
 			{(post as Array<postState>).map((post) => {
 				return (
 					<div
-						className='flex w-full gap-8  bg-light border border-primary rounded-md p-4 my-4'
+						className='flex flex-col w-full gap-2  bg-light border border-primary rounded-md p-4 my-4'
 						key={post._id}
 					>
-						<div className='flex'>
+						<div className='flex items-center gap-2'>
 							<Link className='' href={`/profile/${post.user}`}>
 								{/* eslint-disable-next-line @next/next/no-img-element */}
 								<img
-									className='rounded-full'
+									className='rounded-full w-[48px]'
 									src={`https:${post.avatar}`}
 									alt='avatar'
 								/>
-								<h4 className='font-extrabold text-center text-primary'>
-									<code>
-										{'<'}
-										{post.name}
-										{'/>'}
-									</code>
-								</h4>
 							</Link>
+							<h4 className='font-extrabold text-left w-full text-primary '>
+								<code>
+									-{'<'}
+									{post.name}
+									{'/>'}
+								</code>
+							</h4>
+							<div className='flex w-full justify-end'>
+								{!auth.loading && post.user === (auth.user as any)._id && (
+									<button
+										type='button'
+										onClick={() => dispatchFunction(deletePost(post._id))}
+										className='text-sm  px-1 text-center hover:opacity-80'
+									>
+										❌
+									</button>
+								)}
+							</div>
 						</div>
 						<div className='flex flex-col justify-between items-center w-[90%]'>
 							<div className='text-left w-full pl-5 italic font-bold'>
@@ -86,15 +97,6 @@ export default function PostItem({
 												{']'}
 											</span>
 										</Link>
-										{!auth.loading && post.user === (auth.user as any)._id && (
-											<button
-												type='button'
-												onClick={() => dispatchFunction(deletePost(post._id))}
-												className='hidden md:inline-block text-xl p-1 px-3 text-center m-1 hover:opacity-80 border bg-red-800 rounded-md text-white'
-											>
-												<i className='fas fa-times'></i>
-											</button>
-										)}
 
 										<Link
 											href={`/post/${post._id}`}
@@ -102,21 +104,6 @@ export default function PostItem({
 										>
 											<i className='fa-solid fa-comments'></i>
 										</Link>
-
-										<div className='flex w-full justify-center'>
-											{!auth.loading &&
-												post.user === (auth.user as any)._id && (
-													<button
-														type='button'
-														onClick={() =>
-															dispatchFunction(deletePost(post._id))
-														}
-														className='text-sm  md:hidden p-2 text-center m-1 hover:opacity-80 border bg-red-800 rounded-md text-white'
-													>
-														<span>DELETE</span> <i className='fas fa-times'></i>
-													</button>
-												)}
-										</div>
 									</>
 								)}
 							</div>

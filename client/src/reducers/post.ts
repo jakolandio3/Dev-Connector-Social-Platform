@@ -9,6 +9,8 @@ const {
 	GET_POST,
 	ADD_COMMENT,
 	REMOVE_COMMENT,
+	LOADING_DATA,
+	LOADED_DATA,
 } = ActionType;
 
 interface comment {
@@ -81,6 +83,16 @@ export default function post(
 				...state,
 				error: payload,
 				loading: false,
+			};
+		case LOADED_DATA:
+			return {
+				...state,
+				loading: false,
+			};
+		case LOADING_DATA:
+			return {
+				...state,
+				loading: true,
 			};
 		case UPDATE_LIKES:
 			return {
