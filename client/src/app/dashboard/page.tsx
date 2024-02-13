@@ -37,12 +37,12 @@ export default function Dashboard() {
 				<i className='my-4 fas fa-user'></i>Welcome {user && user.name}
 			</p>
 			{profile !== null && !loading ? (
-				<div className='flex flex-col w-fit gap-4'>
+				<div className='flex flex-col w-full gap-4'>
 					<DashboardActions />
 					<Experience experience={(profile as any)?.experience} />
 					<Education education={(profile as any)?.education} />
 
-					<div className='my-4 flex '>
+					<div className='my-4 flex w-full '>
 						<button
 							onClick={() => deleteUser()}
 							className='w-fit justify-center bg-danger  py-2 px-5 transition-all ease-in-out duration-300 mb-1  text-[#333] rounded-xl hover:opacity-80'
