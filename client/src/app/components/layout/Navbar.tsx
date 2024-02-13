@@ -8,7 +8,8 @@ export default function Navbar() {
 		<nav className=' flex justify-between items-center w-full z-10 fixed top-0 border-b-2 border-primary opacity-90 px-7 py-2 text-white bg-dark '>
 			<h1>
 				<Link href={'/'} className='text-primary font-bold'>
-					<code className='fas fa-code pr-1 '> DevSocial</code>
+					<i className='fas fa-code pr-1' />{' '}
+					<code className='hidden md:inline-block'>DevSocial</code>
 				</Link>
 			</h1>
 

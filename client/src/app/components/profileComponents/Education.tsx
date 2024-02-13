@@ -34,7 +34,7 @@ export default function Education({ education }: { education: education[] }) {
 				<td className='md:mr-2 py-2 mt-4 md:px-5'>
 					<button
 						onClick={() => deleteEDU(edu._id)}
-						className=' bg-danger text-white md:mr-2 py-2 mt-4 md:px-5 rounded-xl cursor-pointer hover:opacity-80 my-1'
+						className='bg-danger text-white mr-2 py-2 mt-4 px-5 rounded-xl cursor-pointer hover:opacity-80 my-1'
 					>
 						Delete
 					</button>

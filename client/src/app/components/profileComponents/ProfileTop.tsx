@@ -19,7 +19,10 @@ export default function ProfileTop({
 				<p className='text-4xl mb-4'>
 					{currentProfile.status} at {currentProfile.company}
 				</p>
-				<p>{currentProfile.location}</p>
+				<p>
+					<i className='fas fa-location-dot text-red-700'></i>{' '}
+					{currentProfile.location}
+				</p>
 				{currentProfile.social && (
 					<div className='mx-2 my-1 flex flex-row gap-2'>
 						{currentProfile.website && (

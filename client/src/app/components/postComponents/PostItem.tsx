@@ -95,42 +95,27 @@ export default function PostItem({
 												<i className='fas fa-times'></i>
 											</button>
 										)}
-										<div className='md:hidden dropdown'>
-											<div
-												tabIndex={0}
-												role='button'
-												className=' bg-[cornsilk] hover:opacity-80 text-xl py-1 border-black text-black font-extrabold  m-1  px-3 rounded-md'
-											>
-												<i className='fa-solid fa-bars'></i>
-											</div>
-											<ul
-												tabIndex={0}
-												className='dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-30'
-											>
-												<li>
-													<Link
-														href={`/post/${post._id}`}
-														className='text-sm p-2 text-center m-1 border hover:opacity-80  bg-primary rounded-md text-white'
+
+										<Link
+											href={`/post/${post._id}`}
+											className='text-xl p-1 px-3 text-center m-1 border md:hidden hover:opacity-80  bg-[cornsilk] rounded-md text-black'
+										>
+											<i className='fa-solid fa-comments'></i>
+										</Link>
+
+										<div className='flex w-full justify-center'>
+											{!auth.loading &&
+												post.user === (auth.user as any)._id && (
+													<button
+														type='button'
+														onClick={() =>
+															dispatchFunction(deletePost(post._id))
+														}
+														className='text-sm  md:hidden p-2 text-center m-1 hover:opacity-80 border bg-red-800 rounded-md text-white'
 													>
-														Comments{' '}
-													</Link>
-												</li>
-												<li>
-													{!auth.loading &&
-														post.user === (auth.user as any)._id && (
-															<button
-																type='button'
-																onClick={() =>
-																	dispatchFunction(deletePost(post._id))
-																}
-																className='text-sm p-1 px-3 text-center m-1 hover:opacity-80 border bg-red-800 rounded-md text-white'
-															>
-																<span>DELETE</span>{' '}
-																<i className='fas fa-times'></i>
-															</button>
-														)}
-												</li>
-											</ul>
+														<span>DELETE</span> <i className='fas fa-times'></i>
+													</button>
+												)}
 										</div>
 									</>
 								)}

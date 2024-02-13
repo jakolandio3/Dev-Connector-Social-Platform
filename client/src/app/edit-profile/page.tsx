@@ -88,8 +88,12 @@ export default function EditProfile() {
 	return (
 		<PrivateRoute>
 			<Alert />
-			<h1 className='text-3xl text-primary'>Edit Your Profile</h1>
-			<p className='text-lg my-4'>
+			<code>
+				<h1 className='text-3xl text-primary'>
+					{'<'}Edit Your Profile{'>'}
+				</h1>
+			</code>
+			<p className='text-lg my-4 text-[cornsilk]'>
 				<i className='fas fa-user'></i> Let{"'"}s get some information to make
 				your profile stand out
 			</p>
@@ -276,6 +280,11 @@ export default function EditProfile() {
 					Go Back
 				</Link>
 			</form>
+			<code>
+				<h1 className='text-3xl text-primary'>
+					{'</'}Edit Your Profile{'>'}
+				</h1>
+			</code>
 		</PrivateRoute>
 	);
 }

@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import { addEducation } from '@/actions/profile';
+import clsx from 'clsx';
 
 export default function AddEducation() {
 	const [formData, setFormData] = useState({
@@ -33,8 +34,12 @@ export default function AddEducation() {
 	return (
 		<PrivateRoute>
 			<Alert />
-			<h1 className='text-3xl text-primary'>Add Your Education</h1>
-			<p className='text-lg my-4'>
+			<code>
+				<h1 className='text-3xl text-primary'>
+					{'<'}Add_Education{'>'}
+				</h1>
+			</code>
+			<p className='text-lg my-4 text-[cornsilk]'>
 				<i className='fas fa-code-branch'></i> Add any school, bootcamp, etc
 				that you have attended
 			</p>
@@ -48,7 +53,11 @@ export default function AddEducation() {
 			>
 				<div className='my-2'>
 					<input
-						className='block w-full p-2 text-lg border border-gray-400'
+						className={clsx(
+							school === ''
+								? 'block w-full p-2 text-lg   border-2 border-red-500'
+								: 'block w-full p-2 text-lg border border-gray-400'
+						)}
 						type='text'
 						placeholder='* School or Boot-Camp'
 						name='school'
@@ -59,7 +68,11 @@ export default function AddEducation() {
 				</div>
 				<div className='my-2'>
 					<input
-						className='block w-full p-2 text-lg border border-gray-400'
+						className={clsx(
+							degree === ''
+								? 'block w-full p-2 text-lg   border-2 border-red-500'
+								: 'block w-full p-2 text-lg border border-gray-400'
+						)}
 						type='text'
 						placeholder='* Degree or Certificate'
 						name='degree'
@@ -79,7 +92,7 @@ export default function AddEducation() {
 					/>
 				</div>
 				<div className='my-2'>
-					<h4>From Date</h4>
+					<h4 className='text-[cornsilk]'>From Date</h4>
 					<input
 						className='block w-full p-2 text-lg border border-gray-400'
 						type='date'
@@ -100,11 +113,13 @@ export default function AddEducation() {
 								setToDateDisabled(!toDateDisabled);
 							}}
 						/>{' '}
-						I am currently studying/enrolled
+						<span className='text-[cornsilk]'>
+							I am currently studying/enrolled
+						</span>
 					</p>
 				</div>
 				<div className='my-2'>
-					<h4>To Date</h4>
+					<h4 className='text-[cornsilk]'>To Date</h4>
 					<input
 						className='block w-full p-2 text-lg border border-gray-400'
 						type='date'
@@ -136,6 +151,11 @@ export default function AddEducation() {
 					Go Back
 				</Link>
 			</form>
+			<code>
+				<h1 className='text-3xl text-primary'>
+					{'</'}Add_Education{'>'}
+				</h1>
+			</code>
 		</PrivateRoute>
 	);
 }

@@ -96,11 +96,17 @@ export default function ProfilePage({ params }: { params: { _id: string } }) {
 							)}
 						</div>
 					</div>
-					<div className='bg-light border mb-4 border-primary p-3 '>
-						{currentProfile.githubusername && (
+					{currentProfile.githubusername ? (
+						<div className='bg-light border mb-4 border-primary p-3 '>
 							<ProfileGithub username={currentProfile.githubusername} />
-						)}
-					</div>
+						</div>
+					) : (
+						<div className='bg-light border mb-4 border-primary p-3 italic text-sm text-current w-full '>
+							<p className='w-full text-center'>
+								{currentProfile.user?.name} Has not Linked their GitHub Account
+							</p>
+						</div>
+					)}
 				</>
 			)}
 		</Container>

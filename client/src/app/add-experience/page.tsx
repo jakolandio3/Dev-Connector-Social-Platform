@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import { addExperience } from '@/actions/profile';
+import clsx from 'clsx';
 
 export default function AddExperience() {
 	const [formData, setFormData] = useState({
@@ -32,8 +33,13 @@ export default function AddExperience() {
 	return (
 		<PrivateRoute>
 			<Alert />
-			<h1 className='text-3xl text-primary'>Add An Experience</h1>
-			<p className='text-lg my-4'>
+			<code>
+				<h1 className='text-3xl text-primary'>
+					{'<'}Add_Expereince{'>'}
+				</h1>
+			</code>
+
+			<p className='text-lg my-4 text-[cornsilk]'>
 				<i className='fas fa-code-branch'></i> Add any developer/programming
 				positions that you have had in the past
 			</p>
@@ -47,7 +53,11 @@ export default function AddExperience() {
 			>
 				<div className='my-2'>
 					<input
-						className='block w-full p-2 text-lg border border-gray-400'
+						className={clsx(
+							title === ''
+								? 'block w-full p-2 text-lg   border-2 border-red-500'
+								: 'block w-full p-2 text-lg border border-gray-400'
+						)}
 						type='text'
 						placeholder='* Job Title'
 						name='title'
@@ -58,7 +68,11 @@ export default function AddExperience() {
 				</div>
 				<div className='my-2'>
 					<input
-						className='block w-full p-2 text-lg border border-gray-400'
+						className={clsx(
+							company === ''
+								? 'block w-full p-2 text-lg   border-2 border-red-500'
+								: 'block w-full p-2 text-lg border border-gray-400'
+						)}
 						type='text'
 						placeholder='* Company'
 						name='company'
@@ -78,7 +92,7 @@ export default function AddExperience() {
 					/>
 				</div>
 				<div className='my-2'>
-					<h4>From Date</h4>
+					<h4 className='text-[cornsilk]'>From Date</h4>
 					<input
 						className='block w-full p-2 text-lg border border-gray-400'
 						type='date'
@@ -99,11 +113,11 @@ export default function AddExperience() {
 								setToDateDisabled(!toDateDisabled);
 							}}
 						/>{' '}
-						Current Job
+						<span className='text-[cornsilk]'>Current Job</span>
 					</p>
 				</div>
 				<div className='my-2'>
-					<h4>To Date</h4>
+					<h4 className='text-[cornsilk]'>To Date</h4>
 					<input
 						className='block w-full p-2 text-lg border border-gray-400'
 						type='date'
@@ -135,6 +149,11 @@ export default function AddExperience() {
 					Go Back
 				</Link>
 			</form>
+			<code>
+				<h1 className='text-3xl text-primary'>
+					{'</'}Add_Expereince{'>'}
+				</h1>
+			</code>
 		</PrivateRoute>
 	);
 }

@@ -3,10 +3,10 @@ import React from 'react';
 
 export default function Landing() {
 	return (
-		<section className=' relative bg-landingHero bg-no-repeat bg-cover bg-center w-[100vw] h-[100vh]'>
+		<section className=' relative bg-landingHero bg-no-repeat bg-cover bg-center w-[100vw] h-[100vh] overflow-hidden'>
 			<div className=' bg-[rgba(0,0,0,0.7)] absolute top-0 left-0 w-full h-full'>
-				<div className='text-white h-[100vh] w-[80vw] m-auto flex flex-col  gap-6 items-center justify-center text-center'>
-					<h1 className=' text-6xl text-primary font-bold'>
+				<div className='text-white h-[100%] w-[80%] m-auto flex flex-col  gap-6 items-center justify-center text-center'>
+					<h1 className=' text-5xl md:text-7xl text-primary font-bold'>
 						{' <'}
 						<code>Dev_Social</code>
 						{'/>'}

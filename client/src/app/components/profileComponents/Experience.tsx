@@ -52,7 +52,7 @@ export default function Experience({
 				md:
 				{'<'}Experience_Credentials{'/>'}
 			</code>
-			<table className='bg-[dark] border '>
+			<table className='bg-[dark]'>
 				<thead>
 					<tr>
 						<th className='bg-light md:mr-2 py-2 mt-4 md:px-8'>Company</th>

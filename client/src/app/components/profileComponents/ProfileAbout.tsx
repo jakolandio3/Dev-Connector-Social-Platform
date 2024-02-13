@@ -24,10 +24,11 @@ export default function ProfileAbout({
 
 			<div className='flex justify-center text-center content-center'></div>
 			<h2 className='text-primary text-2xl font-bold mt-6'>Skill Set</h2>
-			<div className='flex justify-center text-center content-center'>
+			<div className='grid grid-cols-3 justify-center text-center content-center'>
 				{profile.skills.map((skill, index) => (
-					<div key={index} className='p-4'>
-						<i className='fa fa-check'></i> {skill}
+					<div key={index} className='p-4 flex flex-row gap-2 items-center '>
+						<i className='fa fa-check'></i>
+						<span>{skill}</span>
 					</div>
 				))}
 			</div>
