@@ -30,6 +30,27 @@ export default function LoginOut() {
 					</span>
 					<li>
 						<Link
+							href={`/profile/${user?._id && user._id}`}
+							className={clsx(
+								pathname !== `/profile/${user?._id && user._id}`
+									? 'hover:text-primary'
+									: 'text-primary font-extrabold underline'
+							)}
+						>
+							<span className='fas fa-house-chimney-user'></span>{' '}
+							<span
+								className={clsx(
+									pathname === `/profile/${user?._id && user._id}`
+										? 'hidden'
+										: ' hidden md:inline-block'
+								)}
+							>
+								Profile
+							</span>
+						</Link>
+					</li>
+					<li>
+						<Link
 							href={'/profiles'}
 							className={clsx(
 								pathname !== '/profiles'
@@ -89,6 +110,7 @@ export default function LoginOut() {
 							</span>
 						</Link>
 					</li>
+
 					<li>
 						<button
 							onClick={handleLogOut}

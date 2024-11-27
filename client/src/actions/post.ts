@@ -23,9 +23,7 @@ export const getPosts =
 	(): ThunkAction<void, RootState, unknown, UnknownAction> =>
 	async (dispatch) => {
 		try {
-			const res = await axios.get(
-				`https://dev-social-server.onrender.com/api/posts`
-			);
+			const res = await axios.get(`${DATABASE}/posts`);
 
 			dispatch({
 				type: GET_POSTS,
@@ -47,9 +45,7 @@ export const getPost =
 	async (dispatch) => {
 		dispatch({ type: LOADING_DATA });
 		try {
-			const res = await axios.get(
-				`https://dev-social-server.onrender.com/api/posts/${postId}`
-			);
+			const res = await axios.get(`${DATABASE}/posts/${postId}`);
 
 			dispatch({
 				type: GET_POST,
@@ -71,9 +67,7 @@ export const addLike =
 	(postId: string): ThunkAction<void, RootState, unknown, UnknownAction> =>
 	async (dispatch) => {
 		try {
-			const res = await axios.put(
-				`https://dev-social-server.onrender.com/api/posts/like/${postId}`
-			);
+			const res = await axios.put(`${DATABASE}/posts/like/${postId}`);
 
 			dispatch({
 				type: UPDATE_LIKES,
@@ -94,9 +88,7 @@ export const removeLike =
 	(postId: string): ThunkAction<void, RootState, unknown, UnknownAction> =>
 	async (dispatch) => {
 		try {
-			const res = await axios.put(
-				`https://dev-social-server.onrender.com/api/posts/unlike/${postId}`
-			);
+			const res = await axios.put(`${DATABASE}/posts/unlike/${postId}`);
 
 			dispatch({
 				type: UPDATE_LIKES,
@@ -117,9 +109,7 @@ export const deletePost =
 	(postId: string): ThunkAction<void, RootState, unknown, UnknownAction> =>
 	async (dispatch) => {
 		try {
-			const res = await axios.delete(
-				`https://dev-social-server.onrender.com/api/posts/${postId}`
-			);
+			const res = await axios.delete(`${DATABASE}/posts/${postId}`);
 
 			dispatch({
 				type: DELETE_POST,
@@ -147,11 +137,7 @@ export const addPost =
 			},
 		};
 		try {
-			const res = await axios.post(
-				`https://dev-social-server.onrender.com/api/posts`,
-				formData,
-				config
-			);
+			const res = await axios.post(`${DATABASE}/posts`, formData, config);
 
 			dispatch({
 				type: ADD_POST,
@@ -183,7 +169,7 @@ export const addComment =
 		};
 		try {
 			const res = await axios.post(
-				`https://dev-social-server.onrender.com/api/posts/comment/${postId}`,
+				`${DATABASE}/posts/comment/${postId}`,
 				formData,
 				config
 			);
@@ -213,7 +199,7 @@ export const deleteComment =
 	async (dispatch) => {
 		try {
 			const res = await axios.delete(
-				`https://dev-social-server.onrender.com/api/posts/comment/${postId}/${commentId}`
+				`${DATABASE}/posts/comment/${postId}/${commentId}`
 			);
 
 			dispatch({

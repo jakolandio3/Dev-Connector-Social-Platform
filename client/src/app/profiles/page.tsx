@@ -18,11 +18,13 @@ export interface profileFromServer {
 		instagram?: string;
 	};
 	_id: string;
-	user: null | {
-		_id: string;
-		name: string;
-		avatar: string;
-	};
+	user:
+		| undefined
+		| {
+				_id: string;
+				name: string;
+				avatar: string;
+		  };
 	company?: string;
 	location?: string;
 	website?: string;

@@ -16,7 +16,7 @@ const {
 	LOGOUT,
 	CLEAR_PROFILE,
 } = ActionType;
-export const DATABASE = `http://localhost:5000`;
+export const DATABASE = process.env.NEXT_PUBLIC_DATABASE_URL;
 export interface UserFields {
 	name: string;
 	email: string;
@@ -31,9 +31,7 @@ export const loadUser =
 			setAuthToken(localStorage.token);
 		}
 		try {
-			const res = await axios.get(
-				`https://dev-social-server.onrender.com/api/auth`
-			);
+			const res = await axios.get(`${DATABASE}/auth`);
 			dispatch({ type: USER_LOADED, payload: res.data });
 		} catch (error) {
 			dispatch({ type: AUTH_ERROR });
@@ -55,11 +53,7 @@ export const register =
 		};
 		const body = JSON.stringify({ name, email, password });
 		try {
-			const res = await axios.post(
-				`https://dev-social-server.onrender.com/api/users`,
-				body,
-				config
-			);
+			const res = await axios.post(`${DATABASE}/users`, body, config);
 
 			dispatch({
 				type: REGISTER_SUCCESS,
@@ -91,11 +85,7 @@ export const login =
 		};
 		const body = JSON.stringify({ email, password });
 		try {
-			const res = await axios.post(
-				`https://dev-social-server.onrender.com/api/auth`,
-				body,
-				config
-			);
+			const res = await axios.post(`${DATABASE}/auth`, body, config);
 
 			dispatch({
 				type: LOGIN_SUCCESS,

@@ -8,7 +8,7 @@ export default function Alert() {
 		(store) => store.alert
 	);
 	if (alerts.length === 0 || alerts === null) return;
-	console.log(alerts);
+
 	return (
 		<div className='toast toast-center toast-top mt-8'>
 			{alerts.map((alert) => (

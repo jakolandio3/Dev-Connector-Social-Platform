@@ -40,9 +40,7 @@ export const getCurrentProfile =
 	async (dispatch) => {
 		try {
 			dispatch({ type: LOADING_DATA });
-			const res = await axios.get(
-				`https://dev-social-server.onrender.com/api/profile/me`
-			);
+			const res = await axios.get(`${DATABASE}/profile/me`);
 			dispatch({ type: GET_PROFILE, payload: res.data });
 			dispatch({ type: LOADED_DATA });
 		} catch (error: any) {
@@ -63,9 +61,7 @@ export const getProfiles =
 		dispatch({ type: CLEAR_PROFILE });
 		try {
 			dispatch({ type: LOADING_DATA });
-			const res = await axios.get(
-				`https://dev-social-server.onrender.com/api/profile`
-			);
+			const res = await axios.get(`${DATABASE}/profile`);
 			dispatch({ type: GET_PROFILES, payload: res.data });
 			dispatch({ type: LOADED_DATA });
 		} catch (error: any) {
@@ -86,9 +82,7 @@ export const getProfileById =
 		dispatch({ type: CLEAR_PROFILE });
 		try {
 			dispatch({ type: LOADING_DATA });
-			const res = await axios.get(
-				`https://dev-social-server.onrender.com/api/profile/user/${userId}`
-			);
+			const res = await axios.get(`${DATABASE}/profile/user/${userId}`);
 			dispatch({ type: GET_PROFILE, payload: res.data });
 			dispatch({ type: LOADED_DATA });
 		} catch (error: any) {
@@ -106,9 +100,7 @@ export const getGithubRepos =
 	(username: string): ThunkAction<void, RootState, unknown, UnknownAction> =>
 	async (dispatch) => {
 		try {
-			const res = await axios.get(
-				`https://dev-social-server.onrender.com/api/profile/github/${username}`
-			);
+			const res = await axios.get(`${DATABASE}/profile/github/${username}`);
 			dispatch({ type: GET_REPOS, payload: res.data });
 		} catch (error: any) {
 			dispatch({
@@ -136,11 +128,7 @@ export const createProfile =
 				},
 			};
 			const data = JSON.stringify(formData);
-			const res = await axios.post(
-				`https://dev-social-server.onrender.com/api/profile`,
-				data,
-				config
-			);
+			const res = await axios.post(`${DATABASE}/profile`, data, config);
 
 			dispatch({ type: GET_PROFILE, payload: res.data });
 			dispatch(
@@ -181,7 +169,7 @@ export const addExperience =
 			};
 			const data = JSON.stringify(formData);
 			const res = await axios.put(
-				`https://dev-social-server.onrender.com/api/profile/experience`,
+				`${DATABASE}/profile/experience`,
 				data,
 				config
 			);
@@ -221,7 +209,7 @@ export const addEducation =
 			};
 			const data = JSON.stringify(formData);
 			const res = await axios.put(
-				`https://dev-social-server.onrender.com/api/profile/education`,
+				`${DATABASE}/profile/education`,
 				data,
 				config
 			);
@@ -252,9 +240,7 @@ export const deleteExperience =
 	(id: string): ThunkAction<void, RootState, unknown, UnknownAction> =>
 	async (dispatch) => {
 		try {
-			const res = await axios.delete(
-				`https://dev-social-server.onrender.com/api/profile/experience/${id}`
-			);
+			const res = await axios.delete(`${DATABASE}/profile/experience/${id}`);
 			dispatch({ type: UPDATE_PROFILE, payload: res.data });
 			dispatch(setAlert('Experience Removed', 'success'));
 		} catch (error: any) {
@@ -278,9 +264,7 @@ export const deleteEducation =
 	(id: string): ThunkAction<void, RootState, unknown, UnknownAction> =>
 	async (dispatch) => {
 		try {
-			const res = await axios.delete(
-				`https://dev-social-server.onrender.com/api/profile/education/${id}`
-			);
+			const res = await axios.delete(`${DATABASE}/profile/education/${id}`);
 			dispatch({ type: UPDATE_PROFILE, payload: res.data });
 			dispatch(setAlert('Education Removed', 'success'));
 		} catch (error: any) {
@@ -310,9 +294,7 @@ export const deleteAccount =
 			)
 		) {
 			try {
-				await axios.delete(
-					`https://dev-social-server.onrender.com/api/profile`
-				);
+				await axios.delete(`${DATABASE}/profile`);
 				dispatch({ type: CLEAR_PROFILE });
 				dispatch({ type: DELETE_ACCOUNT });
 				dispatch(

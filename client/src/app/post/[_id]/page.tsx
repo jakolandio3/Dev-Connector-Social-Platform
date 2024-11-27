@@ -17,6 +17,7 @@ export default function PostPage({ params }: { params: { _id: string } }) {
 	const dispatch = useDispatch<any>();
 	useEffect(() => {
 		dispatch(getPost(params._id));
+		
 	}, [params._id, dispatch]);
 	const profile = useTypedSelector((state) => state.profile);
 	const { loading, post } = useTypedSelector((state) => state.post);

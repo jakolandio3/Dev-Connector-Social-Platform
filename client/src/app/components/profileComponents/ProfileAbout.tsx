@@ -1,12 +1,22 @@
 import { profileFromServer } from '@/app/profiles/page';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 export default function ProfileAbout({
 	profile,
 }: {
 	profile: profileFromServer;
 }) {
-	const firstName = profile.user?.name.trim().split(' ').at(0);
+	const [firstName, setFirstName] = useState('');
+	useEffect(() => {
+		const {
+			user: { name },
+		} = profile || {};
+
+		if (!name) {
+			return;
+		}
+		setFirstName(name.trim().split(' ').at(0));
+	}, [profile]);
 	return (
 		<div className='text-center mt-4 border border-primary bg-light p-6'>
 			{profile.bio && (
