@@ -8,14 +8,12 @@ export default function ProfileAbout({
 }) {
 	const [firstName, setFirstName] = useState('');
 	useEffect(() => {
-		const {
-			user: { name },
-		} = profile || {};
+		const name = profile?.user?.name;
 
 		if (!name) {
 			return;
 		}
-		setFirstName(name.trim().split(' ').at(0));
+		setFirstName(name.trim().split(' ').at(0) || '');
 	}, [profile]);
 	return (
 		<div className='text-center mt-4 border border-primary bg-light p-6'>
